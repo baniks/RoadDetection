@@ -21,7 +21,7 @@ class Universe:
         for i in range(0, num_elements):
             self.elts.append(UniElt(0, 1, i))
 
-    def find(self,x):
+    def find(self, x):
         # finds which component the vertex belongs to
         y = x
         while y != self.elts[y].p:
@@ -40,7 +40,7 @@ class Universe:
             self.elts[y].size += self.elts[x].size
 
             if self.elts[x].rank == self.elts[y].rank:
-                self.elts[y].rank+=1
+                self.elts[y].rank += 1
 
         self.num -= 1
 

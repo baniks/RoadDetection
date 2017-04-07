@@ -17,7 +17,7 @@ cPickle.dump(hymap02_ds02, open("data/hymap02_ds02.pkl", "wb"))
 
 # Scene: hymap01
 hymap01 = open_image("/home/soubarna/Documents/Independent Study/Hyperspectral data/Berlin Urban Gradient 2009 01 image products/01_image_products/HyMap01_Berlin_Urban_Gradient_2009.hdr")
-hymap01_ds02 = hymap01[5000:6000,530:1150,:]
+hymap01_ds02 = hymap01[5000:6000, 530:1150, :]
 
 # removing corrupt bands
 part1 = hymap01_ds02[:, :, 0:22]

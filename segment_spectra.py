@@ -1,13 +1,13 @@
 import numpy as np
 import cv2
-import math
+import misc
 import edge
 import universe
 from matplotlib import colors
 import six
 from skimage import measure
-from skimage.segmentation import mark_boundaries
 import matplotlib.pyplot as plt
+
 
 def build_graph(run_flag, dist_flag, img):
     """
@@ -35,13 +35,13 @@ def build_graph(run_flag, dist_flag, img):
                     b = y * width + (x + 1)
                     # Euclidean dist weight
                     if dist_flag == 'EU':
-                        w = dist_eu(img, x, y, x + 1, y)
+                        w = misc.dist_eu(img, x, y, x + 1, y)
                         e = edge.Edge(a, b, w)
                         edges.append(e)
                         weights.append(w)
                     # SAD weight
                     if dist_flag == 'SAD':
-                        w_sad = dist_sad(img, x, y, x + 1, y)
+                        w_sad = misc.dist_sad(img, x, y, x + 1, y)
                         e_sad = edge.Edge(a, b, w_sad)
                         edges.append(e_sad)
                         weights.append(w_sad)
@@ -52,13 +52,13 @@ def build_graph(run_flag, dist_flag, img):
                     b = (y + 1) * width + x
                     # Euclidean dist weight
                     if dist_flag == 'EU':
-                        w = dist_eu(img, x, y, x, y + 1)
+                        w = misc.dist_eu(img, x, y, x, y + 1)
                         e = edge.Edge(a, b, w)
                         edges.append(e)
                         weights.append(w)
                     # SAD weight
                     if dist_flag == 'SAD':
-                        w_sad = dist_sad(img, x, y, x, y + 1)
+                        w_sad = misc.dist_sad(img, x, y, x, y + 1)
                         e_sad = edge.Edge(a, b, w_sad)
                         edges.append(e_sad)
                         weights.append(w_sad)
@@ -69,13 +69,13 @@ def build_graph(run_flag, dist_flag, img):
                     b = (y + 1) * width + (x + 1)
                     # Euclidean dist weight
                     if dist_flag == 'EU':
-                        w = dist_eu(img, x, y, x + 1, y + 1)
+                        w = misc.dist_eu(img, x, y, x + 1, y + 1)
                         e = edge.Edge(a, b, w)
                         edges.append(e)
                         weights.append(w)
                     # SAD weight
                     if dist_flag == 'SAD':
-                        w_sad = dist_sad(img, x, y, x + 1, y + 1)
+                        w_sad = misc.dist_sad(img, x, y, x + 1, y + 1)
                         e_sad = edge.Edge(a, b, w_sad)
                         edges.append(e_sad)
                         weights.append(w_sad)
@@ -85,13 +85,13 @@ def build_graph(run_flag, dist_flag, img):
                     a = y * width + x
                     b = (y - 1) * width + (x + 1)
                     if dist_flag == 'EU':
-                        w = dist_eu(img, x, y, x + 1, y - 1)
+                        w = misc.dist_eu(img, x, y, x + 1, y - 1)
                         e = edge.Edge(a, b, w)
                         edges.append(e)
                         weights.append(w)
                     # SAD weight
                     if dist_flag == 'SAD':
-                        w_sad = dist_sad(img, x, y, x + 1, y - 1)
+                        w_sad = misc.dist_sad(img, x, y, x + 1, y - 1)
                         e_sad = edge.Edge(a, b, w_sad)
                         edges.append(e_sad)
                         weights.append(w_sad)
@@ -109,7 +109,7 @@ def build_graph(run_flag, dist_flag, img):
 
     elif run_flag == 'E':
 
-    # For existing run, load the graph from disk
+        # For existing run, load the graph from disk
 
         fr = open("output/edges_hymap02ds02_%s.dat" % dist_flag, 'r')
         num = int(fr.readline().split()[0])
@@ -128,50 +128,15 @@ def threshold(size, c):
     return c/size
 
 
-def threshold_elong(size,c,u,in_comp,height,width):
-    im = np.zeros([width,height],dtype=int)
-    # find pixels belonging to the comp and
-    # form a binary image with comp=255 and background=0
-    for y in range(0, height):
-        for x in range(0, width):
-            comp = u.find(y * width + x)
-            if comp == in_comp:
-                im[x,y] = 255
-
-    #calculate perimeter/area of region
-    properties = measure.regionprops(im)
-    wt = (properties[0].perimeter/properties[0].area)
-    #thres=average of c/size and peri/area
-    thresh = (float(c)/size + wt)/2
-
-    return thresh
-
-
-def dist_eu(im, x1, y1, x2, y2):
-    val = 0.0
-
-    for d in range(0, im.shape[2]):
-        val += np.round(math.pow((float(im[x1, y1, d]) - float(im[x2, y2, d])), 2),4)
-
-    return math.sqrt(val)
-
-
-def dist_sad(im,x1, y1, x2, y2):
-    numr = 0.0
-    denom_1 = 0.0
-    denom_2 = 0.0
-    px_1 = im[x1, y1, :]
-    px_2 = im[x2, y2, :]
-    for d in range(0, im.shape[2]):
-        numr += px_1[d]*px_2[d]
-        denom_1 += px_1[d] * px_1[d]
-        denom_2 += px_2[d] * px_2[d]
-    val = math.acos(numr / (math.sqrt(denom_1) * math.sqrt(denom_2)))
-    return val
-
-
-# Segment image
 def segment_graph(num_vertices, edges, c):
+    """
+    felzenswalb segmenation algo
+    :param num_vertices: number of vertices
+    :param edges: graph/ list of edges
+    :param c: threshold parameter
+    :return:
+    univ: segmented graph
+    """
     print "Segmentation started..."
 
     # sort edges by weight
@@ -208,20 +173,6 @@ def segment_graph(num_vertices, edges, c):
     return u
 
 
-def remove_nan_inf(im):
-    cnt = 0
-    for x in range(0, im.shape[0]):
-        for y in range(0, im.shape[1]):
-            for d in range(0, im.shape[2]):
-                if not np.isfinite(im[x, y, d]):
-                    cnt += 1
-                    im[x, y, d] = np.mean(im[x, y, np.isfinite(im[x, y, :])])
-
-    print "Cleaned nan/inf: ", cnt
-
-    return im
-
-
 def get_colors():
     # create color table
     colors_ = list(six.iteritems(colors.cnames))
@@ -240,53 +191,6 @@ def get_colors():
         rgb.append([x * 255 for x in color])
 
     return rgb
-
-
-def color_segmented_image(u, width, height, c, cat):
-    # pick random colors for each component
-    rgb = get_colors()
-    output = np.empty([width, height, 3])
-
-    # get sorted list of segment ids
-    comps = []
-    for y in range(0, height):
-        for x in range(0, width):
-            comp = u.find(y * width + x)
-            comps.append(comp)
-
-    comps_u = sorted(np.unique(comps))
-
-    for y in range(0, height):
-        for x in range(0, width):
-            comp = u.find(y * width + x)
-            output[x, y] = rgb[comps_u.index(comp)]
-
-    title = "%s segmented image %s" % (cat, c)
-    # cv2.imshow(title, output)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-    return output
-
-
-def draw_contour(u,im,c,cat):
-    width = im.shape[0]
-    height = im.shape[1]
-    r = im[:, :, 18].reshape(width, height, 1)
-    g = im[:, :, 5].reshape(width, height, 1)
-    b = im[:, :, 1].reshape(width, height, 1)
-    rgb_im = np.concatenate((r, g, b), axis=2)
-
-    label_im = np.zeros((width, height), dtype=int)
-    for y in range(0, height):
-        for x in range(0, width):
-            label_im[x, y] = u.find(y * width + x)
-    print "label_im unique value:", len(np.unique(label_im))
-    contoured_im = mark_boundaries(rgb_im, label_im, color=(1, 1, 1))
-    title = "%s segmented image %s" % (cat, c)
-    cv2.imshow(title, contoured_im)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    return contoured_im
 
 
 def get_uniq_segid_list(univ, height, width):
@@ -310,32 +214,10 @@ def get_uniq_segid_list(univ, height, width):
     return segid_uniq_list
 
 
-def get_mean_spectra_old(u, im, segid_uniq_list):
-    width = im.shape[0]
-    height = im.shape[1]
-    dim = im.shape[2]
-    com_px_list = [[] for i in range(u.num_sets())]
-
-    # segment to pixel spectra grouping
-    for y in range(0, height):
-        for x in range(0, width):
-            comp = u.find(y * width + x)
-            seg_idx = segid_uniq_list.index(comp)
-            com_px_list[seg_idx].append(im[x, y, :])
-
-    # calculating mean spectra
-    seg_mean_spectra = np.ndarray(shape=(u.num_sets(), dim), dtype=float)
-    idx = 0
-    for seg in com_px_list:
-        seg_mean_spectra[idx] = np.mean(seg, axis=0)
-        idx += 1
-    return seg_mean_spectra
-
-
-def get_mean_spectra(seg_px_list, img):
+def get_mean_spectra(seg_id_px_list, img):
     """
     Calculates the mean spectra of the segments
-    :param seg_px_list: list of segment to pixel mappings
+    :param seg_id_px_list: list of segment id to pixel mappings
     :param img: input image
     :param dim: number of channels
     :return:
@@ -343,11 +225,12 @@ def get_mean_spectra(seg_px_list, img):
     """
     width = img.shape[0]
     dim = img.shape[2]
-    seg_mean_spectra = np.ndarray(shape=(len(seg_px_list), dim), dtype=float)
+    seg_mean_spectra = np.ndarray(shape=(len(seg_id_px_list), dim), dtype=float)
     idx = 0
 
-    for seg in seg_px_list:
-        seg_px_spectra = [img[elem % width, elem / width, :] for i, elem in enumerate(seg)]
+    for seg in seg_id_px_list:
+        seg_px = seg[1]
+        seg_px_spectra = [img[elem % width, elem / width, :] for i, elem in enumerate(seg_px)]
         seg_mean_spectra[idx] = np.mean(seg_px_spectra, axis=0)
         idx += 1
 
@@ -370,8 +253,8 @@ def map_segment_to_pxs(univ, height, width, segid_uniq_list):
     # segment to pixel spectra grouping
     for y in range(0, height):
         for x in range(0, width):
-            comp = univ.find(y * width + x)
-            seg_idx = segid_uniq_list.index(comp)
+            seg_id = univ.find(y * width + x)
+            seg_idx = segid_uniq_list.index(seg_id)
             seg_px_list[seg_idx].append(y * width + x) #np.array([x, y]))
 
     return seg_px_list
@@ -466,6 +349,13 @@ def post_process(univ, edges, min_size, height, width):
     # Get segment id to pixels mapping
     seg_px_list = map_segment_to_pxs(univ, height, width, segid_uniq_list)
 
+    # Merge segment id and pixel mappings
+    # seg_id_px_list = zip(segid_uniq_list, seg_px_list)
+    seg_id_px_arr = np.empty((univ.num_sets(), 2), dtype=object)
+    for i in range(0, len(segid_uniq_list)):
+        seg_id_px_arr[i][0] = segid_uniq_list[i]
+        seg_id_px_arr[i][1] = seg_px_list[i]
+
     # Visualizing segments
     segmented_img = color_segments(seg_px_list, width, height)
     # cv2.imshow("Before Filtering", segmented_img)
@@ -477,7 +367,7 @@ def post_process(univ, edges, min_size, height, width):
     # Get LFI of segments
     lfi_list = get_lfi(seg_px_list, segid_uniq_list, height, width)
 
-    return seg_px_list, lfi_list
+    return seg_id_px_arr, lfi_list
 
 
 def merge_small_segments(univ, edges, min_size):
@@ -518,32 +408,108 @@ def color_segments(seg_px_list, width, height):
     return output
 
 
-def post_process2(edges, candidate_seg_px_list, min_size):
+def post_process2(edges, candidate_seg_id_px_list, min_size):
     """
     :param edges: graph, list of edges at pixel level
-    :param candidate_seg_px_list: candidate segments and the segment id to pixel mappings in the order of segment ids
+    :param candidate_seg_id_px_list: candidate segments and the segment id to pixel mappings in the order of segment ids
     :param min_size: minimum segment size
     :return:
 
     """
 
     # filter road edges
-    filtered_edges = filter_road_edge(edges, candidate_seg_px_list)
+    filtered_edges = filter_road_edge(edges, candidate_seg_id_px_list)
 
     # find segment edges
 
     # merge small neighboring segments
 
 
-def filter_road_edge(edges, candidate_seg_px_list):
+def filter_road_edge(edges, candidate_seg_id_px_list):
     """
     filter edges that
     :param edges: graph, list of edges at pixel level
-    :param candidate_seg_px_list: candidate segments and the segment id to pixel mappings in the order of segment ids
+    :param candidate_seg_id_px_list: candidate segments and the segment id to pixel mappings in the order of segment ids
+    :param width: image width
     :return:
     filtered edges: edges whose vertices belong to the candidate pixel list
     """
-    # for i in range(0, len(edges)):
-    #   edge = edges[i]
-    #
+    candidate_pxs = []
+    for seg in candidate_seg_id_px_list:
+        candidate_pxs += seg[1]
+
+    filtered_edges = []
+    for i in range(0, len(edges)):
+        _edge = edges[i]
+        if _edge.a in candidate_pxs and _edge.b in candidate_pxs:
+            filtered_edges.append(_edge)
+
+    return filtered_edges
+
+
+def find_segment_edges(univ, px_edges):
+    """
+    finds unique inter segment edges
+    :param univ: universe or segmented graph
+    :param px_edges: edges whose vertices are pixels.
+    :return:
+    inter_seg_edges: list of inter segment edges
+    """
+    s_edges = []
+    # convert pixel edges to segment edges
+    for i in range(0, len(px_edges)):
+        _edge = px_edges[i]
+        seg1 = univ.find(_edge.a)
+        seg2 = univ.find(_edge.b)
+
+        if seg1 != seg2:
+            s_edges.append(np.array([seg1, seg2]))
+    # unique segment
+    inter_seg_edges = misc.unique2d(np.asarray(s_edges))
+    return inter_seg_edges
+
+
+def merge_small_segments2(inter_seg_edges, seg_id_px_list, min_size):
+    """
+
+    :param inter_seg_edges: list of inter segment edges
+    :param seg_id_px_list: segment to pixel mappings
+    :param min_size: minimum size
+    :return:
+    """
+    seg_size_arr = np.empty((len(seg_id_px_list), 1), dtype=int)
+
+    for i in range(0, len(seg_id_px_list)):
+        seg_size_arr[i] = len(seg_id_px_list[i][1])
+
+    for i in range(0, len(inter_seg_edges)):
+        _edge = inter_seg_edges[i]
+        seg_a = _edge[0]
+        seg_b = _edge[1]
+        seg_a_idx = seg_id_px_list[:, 0] == seg_a
+        seg_b_idx = seg_id_px_list[:, 0] == seg_b
+        seg_a_sz = seg_size_arr[seg_a_idx]
+        seg_b_sz = seg_size_arr[seg_b_idx]
+
+        # if seg_b is < min_size, merge with seg_a
+        if seg_a_sz >= min_size and seg_b_sz < min_size:
+            # merge seg_b to seg_a in candidate_seg_id_px_list
+            seg_id_px_list[seg_a_idx][0][1] += seg_id_px_list[seg_b_idx][0][1]
+            # change size of seg_a in candidate_seg_id_px_list
+            seg_size_arr[seg_a_idx] += seg_b_sz
+            # replace seg_b in inter_seg_edges
+            for i, elem in enumerate(inter_seg_edges[i+1:]):
+                elem[elem == seg_b] = seg_a
+            # delete seg_b from candidate_seg_id_px_list, seg_size_arr
+            np.delete(seg_id_px_list,seg_b_idx,0)
+            np.delete(seg_size_arr, seg_b_idx, 0)
+
+
+
+
+
+
+
+
+
 

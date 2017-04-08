@@ -1,51 +1,51 @@
 
-# disjoint-set forests using union-by-rank and path compression (sort of).
+# disjoint-set forests using union-by-rank
 
 
-class UniElt:
+class UniSegment:
 
-    def __init__(self, rank, size, p):
+    def __init__(self, rank, size, id):
         self.rank = rank
         self.size = size
-        self.p = p
+        self.id = id
 
     def get_size(self):
-        return self.size;
+        return self.size
 
 
 class Universe:
 
     def __init__(self, num_elements):
-        self.elts = []
+        self.segments = []
         self.num = num_elements
         for i in range(0, num_elements):
-            self.elts.append(UniElt(0, 1, i))
+            self.segments.append(UniSegment(0, 1, i))
 
     def find(self, x):
         # finds which component the vertex belongs to
         y = x
-        while y != self.elts[y].p:
-            y = self.elts[y].p
+        while y != self.segments[y].id:
+            y = self.segments[y].id
 
-        self.elts[x].p = y
+        self.segments[x].id = y
         return y
 
     def join(self, x, y):
         # Join x,y based on rank
-        if self.elts[x].rank > self.elts[y].rank:
-            self.elts[y].p = x
-            self.elts[x].size += self.elts[y].size
+        if self.segments[x].rank > self.segments[y].rank:
+            self.segments[y].id = x
+            self.segments[x].size += self.segments[y].size
         else:
-            self.elts[x].p = y
-            self.elts[y].size += self.elts[x].size
+            self.segments[x].id = y
+            self.segments[y].size += self.segments[x].size
 
-            if self.elts[x].rank == self.elts[y].rank:
-                self.elts[y].rank += 1
+            if self.segments[x].rank == self.segments[y].rank:
+                self.segments[y].rank += 1
 
         self.num -= 1
 
     def get_size(self, x):
-        e = self.elts[x]
+        e = self.segments[x]
         return e.get_size()
 
     def num_sets(self):

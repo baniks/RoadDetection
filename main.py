@@ -1,9 +1,11 @@
 from spectral import *
 import numpy as np
 import cv2
+import cPickle
 import segment_spectra as sb_spec
 import classification as sb_lib
-import cPickle
+import misc
+
 
 # Parameter settings
 run_flag = 'E'  # for existing run : E, for new run: N
@@ -33,7 +35,7 @@ print "Data loaded"
 # -------------------------------- Pre - processing -------------------------------- #
 
 # Data cleaning
-img = sb_spec.remove_nan_inf(img)
+img = misc.remove_nan_inf(img)
 print "Data cleaning: removed nan/inf.."
 
 # Smooth channels
@@ -62,10 +64,10 @@ univ = sb_spec.segment_graph(width*height, edges, c)
 # STEP3: Post-processing segments/superpixels
 # detect small components as the roads are very thin. K and min_size controls the overall size
 # and hence large k and min_size won't detect the thin line segments.
-seg_px_list, lfi_list = sb_spec.post_process(univ, edges, min_size, height, width)
+seg_id_px_arr, lfi_list = sb_spec.post_process(univ, edges, min_size, height, width)
 
 # STEP4: Calculate mean spectra of the segments/superpixels
-seg_mean_spectra = sb_spec.get_mean_spectra(seg_px_list, sm_img)
+seg_mean_spectra = sb_spec.get_mean_spectra(seg_id_px_arr, sm_img)
 
 # --------------------------------Superpixel generation ends-------------------------------- #
 
@@ -74,7 +76,7 @@ seg_mean_spectra = sb_spec.get_mean_spectra(seg_px_list, sm_img)
 classified_labels = sb_lib.classify(seg_mean_spectra)
 
 # Filter label roads
-asphalt_concrete_seg_px_list = [seg_px_list[i] for i, elem in enumerate(classified_labels) if elem == 1]
+asphalt_concrete_seg_id_px_arr = [seg_id_px_arr[i] for i, elem in enumerate(classified_labels) if elem == 1]
 
 # STEp 6: post process 2
 
@@ -92,12 +94,12 @@ filtered_lfi_list = [lfi_list[i] for i, elem in enumerate(classified_labels) if 
 
 
 # STEP6: Final filtering based on shape
-road_seg_px_list = sb_spec.filter_shape(asphalt_concrete_seg_px_list, filtered_lfi_list, 0, 5)
+road_seg_px_list = sb_spec.filter_shape(asphalt_concrete_seg_id_px_arr, filtered_lfi_list, 0, 5)
 
 # STEP7: Compare with ground truth
 precision_lst = []
 recall_lst = []
-precision, recall, road_pxs = sb_lib.calc_precision_recall(asphalt_concrete_seg_px_list)
+precision, recall, road_pxs = sb_lib.calc_precision_recall(asphalt_concrete_seg_px_arr)
 
 print "Precision: ", precision
 print "Recall: ", recall

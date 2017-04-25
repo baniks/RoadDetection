@@ -1,0 +1,12 @@
+\select@language {english}
+\select@language {english}
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}Related Work}{3}
+\contentsline {section}{\numberline {3}Hyperspectral Data Theory}{4}
+\contentsline {section}{\numberline {4}Road Detection using Hyperspectral Data}{6}
+\contentsline {subsection}{\numberline {4.1}Image Data}{6}
+\contentsline {subsection}{\numberline {4.2}Superpixel Segmentation}{6}
+\contentsline {subsubsection}{\numberline {4.2.1}Segmentation algorithm of Felzenszwalb and Huttenlocher}{7}
+\contentsline {subsection}{\numberline {4.3}Classification of Superpixels}{8}
+\contentsline {section}{\numberline {5}Experimental Result}{9}
+\contentsline {section}{\numberline {6}Conclusion}{10}

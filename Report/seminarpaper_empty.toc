@@ -1,0 +1,14 @@
+\select@language {english}
+\select@language {english}
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}Related Work}{2}
+\contentsline {section}{\numberline {3}Project Architecture}{3}
+\contentsline {subsection}{\numberline {3.1}Dataset}{4}
+\contentsline {subsection}{\numberline {3.2}Image Pre-processing}{4}
+\contentsline {subsection}{\numberline {3.3}Feature Extraction}{5}
+\contentsline {subsubsection}{\numberline {3.3.1}Keypoint Detection}{5}
+\contentsline {subsubsection}{\numberline {3.3.2}Descriptor Extraction}{6}
+\contentsline {subsection}{\numberline {3.4}Vocabulary generation}{7}
+\contentsline {subsection}{\numberline {3.5}Offline generation of Term Vector}{7}
+\contentsline {section}{\numberline {4}Experimental Result}{8}
+\contentsline {section}{\numberline {5}Conclusion}{11}

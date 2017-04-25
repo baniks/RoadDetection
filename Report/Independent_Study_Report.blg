@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Independent_Study_Report.aux
+The style file: plain.bst
+Database file #1: bib.bib
+Warning--empty journal in okujeni2016berlinurbangradient
+Warning--empty journal in Cheng
+Warning--empty year in Cheng
+Warning--empty journal in keshava2000algorithm
+Warning--empty journal in Miao2013
+You've used 16 entries,
+            2118 wiz_defined-function locations,
+            600 strings with 7358 characters,
+and the built_in function-call counts, 5552 in all, are:
+= -- 547
+> -- 296
+< -- 4
++ -- 119
+- -- 100
+* -- 392
+:= -- 944
+add.period$ -- 50
+call.type$ -- 16
+change.case$ -- 99
+chr.to.int$ -- 0
+cite$ -- 21
+duplicate$ -- 195
+empty$ -- 387
+format.name$ -- 100
+if$ -- 1135
+int.to.chr$ -- 0
+int.to.str$ -- 16
+missing$ -- 14
+newline$ -- 84
+num.names$ -- 32
+pop$ -- 98
+preamble$ -- 1
+purify$ -- 82
+quote$ -- 0
+skip$ -- 149
+stack$ -- 0
+substring$ -- 313
+swap$ -- 40
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 64
+warning$ -- 5
+while$ -- 54
+width$ -- 18
+write$ -- 173
+(There were 5 warnings)

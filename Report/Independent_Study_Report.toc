@@ -5,8 +5,8 @@
 \contentsline {section}{\numberline {3}Hyperspectral Image}{4}
 \contentsline {section}{\numberline {4}Road Detection using Hyperspectral Image}{6}
 \contentsline {subsection}{\numberline {4.1}Image Dataset}{6}
-\contentsline {subsection}{\numberline {4.2}Superpixel Segmentation}{6}
+\contentsline {subsection}{\numberline {4.2}Superpixel Segmentation}{7}
 \contentsline {subsubsection}{\numberline {4.2.1}Segmentation algorithm of Felzenszwalb and Huttenlocher}{7}
-\contentsline {subsection}{\numberline {4.3}Classification of Superpixels}{8}
+\contentsline {subsection}{\numberline {4.3}Classification of Superpixels}{9}
 \contentsline {section}{\numberline {5}Experimental Result}{9}
-\contentsline {section}{\numberline {6}Conclusion}{10}
+\contentsline {section}{\numberline {6}Conclusion}{9}

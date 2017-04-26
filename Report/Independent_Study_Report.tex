@@ -222,6 +222,12 @@ Even materials belonging to the same class differ in their spectra. For example,
 \section{Road Detection using Hyperspectral Image}
 \label{sec:model}
 In this section, the proposed superpixel based road detection method is described. The method can be divided into two stages - an initial superpixel segmentation, followed by a classification stage. 
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=\textwidth]{src/model.eps}
+\caption{Architecture}
+\label{fig:arch}
+\end{figure}
 
 \subsection{Image Dataset}
 Berlin-Urban-Gradient dataset \cite{okujeni2016berlinurbangradient} is a ready-to-use multi-scale imaging spectrometer dataset prepared by GFZ German Research Center for Geosciences. The dataset contains two hyperspectral scenes, named HyMap01 and HyMap02, at 3.6m and 9m resolution respectively. The two scenes were captured by the German Aerospace Center (DLR) on 20 August 2009 around solar noon under clear sky condition. These two scenes can be referred in Figure \ref{fig:data}.\\

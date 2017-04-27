@@ -1,0 +1,285 @@
+/usr/bin/python2.7 /home/soubarna/Documents/Workspace/Python_Hyperspectral_Segmentation/main.py
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+
+==============================
+Segmentation for c:  100
+min_size:  5
+Components joined: 230525
+SAD Graph segmented
+SAD segments merged
+No of segments 2948
+Roof: 8382
+Pavement:  1390
+veg:  177893
+tree:  40224
+soil:  5988
+Other:  2123
+tp, fp, fn:  228 1162 1276
+precision:  0.164028776978
+recall:  0.151595744681
+(1390, 2)
+
+==============================
+Segmentation for c:  250
+min_size:  5
+Components joined: 232257
+SAD Graph segmented
+SAD segments merged
+No of segments 1654
+Roof: 6836
+Pavement:  314
+veg:  180444
+tree:  42897
+soil:  3871
+Other:  1638
+tp, fp, fn:  0 314 1504
+precision:  0.0
+recall:  0.0
+(314, 2)
+
+==============================
+Segmentation for c:  500
+min_size:  5
+Components joined: 233067
+SAD Graph segmented
+SAD segments merged
+No of segments 1145
+Roof: 6433
+Pavement:  820
+veg:  182236
+tree:  42622
+soil:  3262
+Other:  627
+tp, fp, fn:  106 714 1398
+precision:  0.129268292683
+recall:  0.0704787234043
+(820, 2)
+
+==============================
+Segmentation for c:  100
+min_size:  10
+Components joined: 230525
+SAD Graph segmented
+SAD segments merged
+No of segments 2455
+Roof: 7217
+Pavement:  107
+veg:  176689
+tree:  44363
+soil:  5879
+Other:  1745
+tp, fp, fn:  36 71 1468
+precision:  0.336448598131
+recall:  0.0239361702128
+(107, 2)
+
+==============================
+Segmentation for c:  250
+min_size:  10
+Components joined: 232257
+SAD Graph segmented
+SAD segments merged
+No of segments 1257
+Roof: 6604
+Pavement:  0
+veg:  179511
+tree:  44615
+soil:  3834
+Other:  1436
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  500
+min_size:  10
+Components joined: 233067
+SAD Graph segmented
+SAD segments merged
+No of segments 837
+Roof: 6433
+Pavement:  0
+veg:  181625
+tree:  44616
+soil:  3242
+Other:  84
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  100
+min_size:  15
+Components joined: 230525
+SAD Graph segmented
+SAD segments merged
+No of segments 2265
+Roof: 7157
+Pavement:  0
+veg:  177161
+tree:  44034
+soil:  5899
+Other:  1749
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  250
+min_size:  15
+Components joined: 232257
+SAD Graph segmented
+SAD segments merged
+No of segments 1115
+Roof: 6589
+Pavement:  0
+veg:  179501
+tree:  44987
+soil:  3845
+Other:  1078
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  500
+min_size:  15
+Components joined: 233067
+SAD Graph segmented
+SAD segments merged
+No of segments 713
+Roof: 6398
+Pavement:  0
+veg:  181016
+tree:  45249
+soil:  3253
+Other:  84
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  100
+min_size:  20
+Components joined: 230525
+SAD Graph segmented
+SAD segments merged
+No of segments 2157
+Roof: 7104
+Pavement:  0
+veg:  177048
+tree:  44198
+soil:  5882
+Other:  1768
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  250
+min_size:  20
+Components joined: 232257
+SAD Graph segmented
+SAD segments merged
+No of segments 1031
+Roof: 6556
+Pavement:  0
+veg:  178978
+tree:  45590
+soil:  3814
+Other:  1062
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  500
+min_size:  20
+Components joined: 233067
+SAD Graph segmented
+SAD segments merged
+No of segments 641
+Roof: 6415
+Pavement:  0
+veg:  180962
+tree:  45335
+soil:  3204
+Other:  84
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+End
+
+
+==============================
+Segmentation for c:  150
+min_size:  10
+Components joined: 231462
+SAD Graph segmented
+SAD segments merged
+No of segments 1824
+Roof: 8314
+Pavement:  1933
+veg:  181578
+tree:  37265
+soil:  5160
+Other:  1750
+tp, fp, fn:  430 1503 1074
+precision:  0.222452146922
+recall:  0.285904255319
+(1933, 2)
+
+==============================
+Segmentation for c:  200
+min_size:  10
+Components joined: 231982
+SAD Graph segmented
+SAD segments merged
+No of segments 1484
+Roof: 6856
+Pavement:  506
+veg:  177676
+tree:  44792
+soil:  4692
+Other:  1478
+tp, fp, fn:  2 504 1502
+precision:  0.00395256916996
+recall:  0.00132978723404
+(506, 2)
+
+==============================
+Segmentation for c:  300
+min_size:  10
+Components joined: 232613
+SAD Graph segmented
+SAD segments merged
+No of segments 1117
+Roof: 7602
+Pavement:  247
+veg:  174809
+tree:  49152
+soil:  4111
+Other:  79
+tp, fp, fn:  25 222 1479
+precision:  0.101214574899
+recall:  0.0166223404255
+(247, 2)
+End
+
+
+
+
+

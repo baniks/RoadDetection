@@ -1,15 +1,13 @@
 import numpy as np
-import cv2
 import misc
 import edge
 import universe
 from matplotlib import colors
 import six
 from skimage import measure
-import matplotlib.pyplot as plt
 
 
-def build_graph(run_flag, dist_flag, img):
+def build_graph(run_flag, dist_flag, img, ds_name):
     """
     buils a graph with nodes for each pixel and edges with distance weight
     :param run_flag: N for new run, E for existing run
@@ -101,7 +99,7 @@ def build_graph(run_flag, dist_flag, img):
         print "Num of segments before merging: ", num
 
         # save the graph for faster run later
-        f = open("output/edges_hymap02ds02_%s.dat" % dist_flag, 'w')
+        f = open("data/edges_%s_%s.dat" % (ds_name, dist_flag), 'w')
         f.write("%d\n" % num)
         for e in edges:
             f.write("%d %d %f\n" % (e.a, e.b, e.w))
@@ -111,7 +109,7 @@ def build_graph(run_flag, dist_flag, img):
 
         # For existing run, load the graph from disk
 
-        fr = open("output/edges_hymap02ds02_%s.dat" % dist_flag, 'r')
+        fr = open("data/edges_%s_%s.dat" % (ds_name, dist_flag), 'r')
         num = int(fr.readline().split()[0])
         for line in fr:
             words = line.split()
@@ -137,7 +135,6 @@ def segment_graph(num_vertices, edges, c):
     :return:
     univ: segmented graph
     """
-    print "Segmentation started..."
 
     # sort edges by weight
     edges = sorted(edges, key=lambda _edge: _edge.w)
@@ -168,8 +165,6 @@ def segment_graph(num_vertices, edges, c):
                 thres[a] = pedge.w + threshold(u.get_size(a), c)
                 # Int(a) = max weight in a. As edge is sorted, pedge.w = max weight belonging to the comp a
 
-    print "Components joined:", joined
-    print "Segmentation complete."
     return u
 
 
@@ -219,7 +214,6 @@ def get_mean_spectra(seg_id_px_list, img):
     Calculates the mean spectra of the segments
     :param seg_id_px_list: list of segment id to pixel mappings
     :param img: input image
-    :param dim: number of channels
     :return:
     seg_mean_spectra: mean spectra of the segments
     """
@@ -260,29 +254,64 @@ def map_segment_to_pxs(univ, height, width, segid_uniq_list):
     return seg_px_list
 
 
-def get_lfi(seg_px_list, segid_uniq_list, height, width):
+def get_perim_area(seg_id_px_arr, height, width):
+    """
+
+    :param seg_id_px_arr: segment id to pixel mappings
+    :param height: height of image
+    :param width: width of image
+    :return:
+    shp_score_list: shape score values for the segments in the order of segment ids
+    label_list: label of segments
+    """
+    # create labelled image
+    labelled_img = np.zeros([width, height], dtype=int)
+
+    for seg in seg_id_px_arr:
+        seg_id = seg[0]
+        px_list = seg[1]
+        # label all pixels belonging to the segment with the segment id
+        for px in px_list:
+            x = px % width
+            y = px / width
+            labelled_img[x, y] = seg_id
+
+    # measure segment properties
+    regions = measure.regionprops(labelled_img)
+
+    # calculate shape score for each segment
+    shp_score_list = []
+    label_list = []
+
+    for props in regions:
+        shp_score = (props.perimeter*1.0)/props.area
+        shp_score_list.append(shp_score)
+        label_list.append(props.label)
+
+    return shp_score_list, label_list
+
+
+def get_lfi(seg_id_px_arr, height, width):
     """
     Calculates LFI value for each segment
-    :param seg_px_list: list of segment id to pixel mappings
-    :param segid_uniq_list: list of unique segment ids
+    :param seg_id_px_arr: list of segment id to pixel mappings
     :param height: height of image
     :param width: width of image
     :return:
     lfi_list: lfi values for the segments in ascending order of segment ids
     """
 
-    idx = 0
-
     # create labelled image
     labelled_img = np.zeros([width, height], dtype=int)
 
-    for seg in seg_px_list:
+    for seg in seg_id_px_arr:
+        seg_id = seg[0]
+        px_list = seg[1]
         # label all pixels belonging to the segment with the segment id
-        for px in seg:
+        for px in px_list:
             x = px % width
             y = px / width
-            labelled_img[x, y] = segid_uniq_list[idx]
-        idx += 1
+            labelled_img[x, y] = seg_id + 1
 
     # measure segment properties
     regions = measure.regionprops(labelled_img)
@@ -301,30 +330,35 @@ def get_lfi(seg_px_list, segid_uniq_list, height, width):
         lfi = diag_sq / props.area
         lfi_list.append(lfi)
 
-    print "segment LFI calculated"
-
     return lfi_list
 
 
-def filter_shape(seg_px_list, lfi_list, thres1, thres2):
+def filter_shape(seg_id_px_arr, shp_score_list, label_list, thres1, thres2):
     """
-    Removes segments with LFI value between threshold values thres1 and thres2
-    :param seg_px_list: segment id to pixel mappings in the order of segment ids
-    :param lfi_list: LFI values for the segments in the order of segment ids
+    Removes segments with shape score between threshold values thres1 and thres2
+    :param seg_id_px_arr: segment id to pixel mappings
+    :param shp_score_list: shape score values for the segments in the order of segment ids
     :param thres1: lower threshold value
     :param thres2: upper threshold value
     :return:
-    filtered_seg_px_list: filtered segments to pixel mappings
+    seg_id_px_arr: filtered segments to pixel mappings
     """
-    filtered_seg_px_list = list(seg_px_list)
+    # filtered_seg_id_px_list = list(seg_id_px_list)
+    # # sort by segment id
+    # seg_id_px_arr1 = np.sort(seg_id_px_arr, axis=0)
+
     cnt = 0
-    for idx in range(len(lfi_list) - 1, -1, -1):
-        if thres1 < lfi_list[idx] < thres2:
+    mask = np.zeros(len(shp_score_list), dtype=bool)
+
+    for idx in range(len(shp_score_list) - 1, -1, -1):
+        if thres1 <= shp_score_list[idx] < thres2:
             cnt += 1
-            # remove segment from seg_px_list
-            del filtered_seg_px_list[idx]
-    print "Num of regions: ", len(filtered_seg_px_list)
-    return filtered_seg_px_list
+            mask[idx] = True
+
+    # remove segment from seg_px_list
+    # seg_id_px_arr = np.delete(seg_id_px_arr, idx_list, 0)
+    print cnt, "segments filtered based on shape scores."
+    return seg_id_px_arr[~mask]
 
 
 def post_process(univ, edges, min_size, height, width):
@@ -336,8 +370,7 @@ def post_process(univ, edges, min_size, height, width):
     :param height: height of image
     :param width: width of image
     :return:
-    seg_px_list: segment id to pixel mappings in the order of segment ids
-    lfi_list: LFI values for the segments in the order of segment ids
+    seg_id_px_arr: segment id to pixel mappings in the order of segment ids
     """
 
     # merge_small_component()
@@ -350,24 +383,17 @@ def post_process(univ, edges, min_size, height, width):
     seg_px_list = map_segment_to_pxs(univ, height, width, segid_uniq_list)
 
     # Merge segment id and pixel mappings
-    # seg_id_px_list = zip(segid_uniq_list, seg_px_list)
     seg_id_px_arr = np.empty((univ.num_sets(), 2), dtype=object)
     for i in range(0, len(segid_uniq_list)):
         seg_id_px_arr[i][0] = segid_uniq_list[i]
         seg_id_px_arr[i][1] = seg_px_list[i]
 
     # Visualizing segments
-    segmented_img = color_segments(seg_px_list, width, height)
-    # cv2.imshow("Before Filtering", segmented_img)
+
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
 
-    print "Range of color: ", np.min(segmented_img), np.max(segmented_img)
-
-    # Get LFI of segments
-    lfi_list = get_lfi(seg_px_list, segid_uniq_list, height, width)
-
-    return seg_id_px_arr, lfi_list
+    return seg_id_px_arr
 
 
 def merge_small_segments(univ, edges, min_size):
@@ -386,7 +412,7 @@ def merge_small_segments(univ, edges, min_size):
         if (a != b) and ((univ.get_size(a) < min_size) or (univ.get_size(b) < min_size)):
             univ.join(a, b)
 
-    print "No of resultant segments: ", univ.num_sets()
+    print "No of segments after merging: ", univ.num_sets()
 
     return univ
 
@@ -408,41 +434,73 @@ def color_segments(seg_px_list, width, height):
     return output
 
 
-def post_process2(edges, candidate_seg_id_px_list, min_size):
+def post_process2(univ, edges, candidate_seg_id_px_list, min_size):
     """
+    merge small neighboring segments
+    :param univ: universe/segmented graph
     :param edges: graph, list of edges at pixel level
     :param candidate_seg_id_px_list: candidate segments and the segment id to pixel mappings in the order of segment ids
     :param min_size: minimum segment size
     :return:
-
+    merged_seg_id_px_list: merged segments with mapped pixel information
     """
 
     # filter road edges
     filtered_edges = filter_road_edge(edges, candidate_seg_id_px_list)
 
-    # find segment edges
+    # find inter segment edges / neighboring segments
+    inter_seg_edges = find_segment_edges(univ, filtered_edges)
 
     # merge small neighboring segments
+    merged_seg_id_px_list = merge_small_segments2(inter_seg_edges, candidate_seg_id_px_list, min_size)
+
+    print "PP2| # of segments after merging: ", len(merged_seg_id_px_list)
+
+    return merged_seg_id_px_list
 
 
 def filter_road_edge(edges, candidate_seg_id_px_list):
     """
-    filter edges that
+    filter edges whose vertices do not overlap with any candidate pixels
     :param edges: graph, list of edges at pixel level
     :param candidate_seg_id_px_list: candidate segments and the segment id to pixel mappings in the order of segment ids
     :param width: image width
     :return:
     filtered edges: edges whose vertices belong to the candidate pixel list
     """
+
     candidate_pxs = []
     for seg in candidate_seg_id_px_list:
         candidate_pxs += seg[1]
 
-    filtered_edges = []
+    candidate_pxs = set(candidate_pxs)
+
+    edges_arr = np.empty((len(edges), 3), int)
+
+    # convert list of class edges to array
     for i in range(0, len(edges)):
         _edge = edges[i]
-        if _edge.a in candidate_pxs and _edge.b in candidate_pxs:
-            filtered_edges.append(_edge)
+        edges_arr[i][0] = _edge.a
+        edges_arr[i][1] = _edge.b
+        edges_arr[i][2] = _edge.w
+
+    filtered_edges = []
+
+    cnt = 0
+
+    for px in candidate_pxs:
+        # search in first column  - edge.a
+        idx = px == edges_arr[:, 0]
+
+        # search other vertices of filtered edges in candidate_pxs
+        filtered_a = edges_arr[idx]
+
+        # t1 = timeit.default_timer()
+        for _edge in filtered_a:
+            cnt += 1
+            if _edge[1] in candidate_pxs:
+                # both vertex of edge belong to candidate_pxs set
+                filtered_edges.append(edge.Edge(_edge[0], _edge[1], _edge[2]))
 
     return filtered_edges
 
@@ -464,45 +522,83 @@ def find_segment_edges(univ, px_edges):
 
         if seg1 != seg2:
             s_edges.append(np.array([seg1, seg2]))
+
     # unique segment
     inter_seg_edges = misc.unique2d(np.asarray(s_edges))
+
     return inter_seg_edges
 
 
-def merge_small_segments2(inter_seg_edges, seg_id_px_list, min_size):
+def merge_small_segments2(inter_seg_edges, seg_id_px_arr, min_size):
     """
 
     :param inter_seg_edges: list of inter segment edges
-    :param seg_id_px_list: segment to pixel mappings
+    :param seg_id_px_arr: segment to pixel mappings
     :param min_size: minimum size
     :return:
+    seg_id_px_arr: merged segments with pixel mapping
     """
-    seg_size_arr = np.empty((len(seg_id_px_list), 1), dtype=int)
+    seg_size_arr = np.empty((len(seg_id_px_arr)), dtype=int)
 
-    for i in range(0, len(seg_id_px_list)):
-        seg_size_arr[i] = len(seg_id_px_list[i][1])
+    # compute size of each segment
+    for i in range(0, len(seg_id_px_arr)):
+        seg_size_arr[i] = len(seg_id_px_arr[i, 1])
+
+    # Loop through all neighboring segments and
+    # merge segments with size smaller than min_size
+    mask = np.zeros(len(seg_id_px_arr), dtype=bool)
 
     for i in range(0, len(inter_seg_edges)):
+
         _edge = inter_seg_edges[i]
+
         seg_a = _edge[0]
         seg_b = _edge[1]
-        seg_a_idx = seg_id_px_list[:, 0] == seg_a
-        seg_b_idx = seg_id_px_list[:, 0] == seg_b
-        seg_a_sz = seg_size_arr[seg_a_idx]
-        seg_b_sz = seg_size_arr[seg_b_idx]
+
+        seg_a_idx = np.where(seg_id_px_arr[:, 0] == seg_a)
+        seg_b_idx = np.where(seg_id_px_arr[:, 0] == seg_b)
+
+        seg_a_sz = seg_size_arr[seg_a_idx][0]
+        seg_b_sz = seg_size_arr[seg_b_idx][0]
 
         # if seg_b is < min_size, merge with seg_a
-        if seg_a_sz >= min_size and seg_b_sz < min_size:
-            # merge seg_b to seg_a in candidate_seg_id_px_list
-            seg_id_px_list[seg_a_idx][0][1] += seg_id_px_list[seg_b_idx][0][1]
+        if seg_b_sz < min_size <= seg_a_sz:
+
+            # merge seg_b to seg_a in seg_id_px_list
+            seg_id_px_arr[seg_a_idx][0][1] += seg_id_px_arr[seg_b_idx][0][1]
+
             # change size of seg_a in candidate_seg_id_px_list
             seg_size_arr[seg_a_idx] += seg_b_sz
+
             # replace seg_b in inter_seg_edges
             for i, elem in enumerate(inter_seg_edges[i+1:]):
                 elem[elem == seg_b] = seg_a
-            # delete seg_b from candidate_seg_id_px_list, seg_size_arr
-            np.delete(seg_id_px_list,seg_b_idx,0)
-            np.delete(seg_size_arr, seg_b_idx, 0)
+
+            # delete seg_b from seg_id_px_list, seg_size_arr
+            # seg_id_px_arr = np.delete(seg_id_px_arr, seg_b_idx, 0)
+            # seg_size_arr = np.delete(seg_size_arr, seg_b_idx, 0)
+            mask[seg_b_idx] = True
+
+        elif (seg_a_sz < min_size <= seg_b_sz) or (seg_a_sz < min_size and seg_b_sz < min_size):
+
+            # merge seg_a to seg_b in seg_id_px_list
+            seg_id_px_arr[seg_b_idx][0][1] += seg_id_px_arr[seg_a_idx][0][1]
+
+            # change size of seg_a in candidate_seg_id_px_list
+            seg_size_arr[seg_b_idx] += seg_a_sz
+
+            # replace seg_a in inter_seg_edges
+            for i, elem in enumerate(inter_seg_edges[i + 1:]):
+                elem[elem == seg_a] = seg_b
+
+            # delete seg_a from seg_id_px_list, seg_size_arr
+            # seg_id_px_arr = np.delete(seg_id_px_arr, seg_a_idx, 0)
+            # seg_size_arr = np.delete(seg_size_arr, seg_a_idx, 0)
+            mask[seg_a_idx] = True
+
+    return seg_id_px_arr[~mask]
+
+
 
 
 

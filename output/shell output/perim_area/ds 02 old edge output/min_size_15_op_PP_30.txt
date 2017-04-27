@@ -1,0 +1,365 @@
+Max recall: c=40
+max precision: c=90,100
+=====================================================================
+Case 1:
+c: 40
+min_size: 15
+----------------------------
+Parameters:
+c:  40
+Min_size:  15
+Distance metric:  SAD
+Image dimension: (400, 590, 111)
+Data loaded
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  941032
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  8953
+Checkpoint : postprocess 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  432
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  275
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.13807118746
+58 segments filtered based on LFI values.
+# of road segments after shape filtering:  217
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  1358 8569 230
+Precision:  0.136798629999
+Recall:  0.85516372796
+=====================================================================
+Case 2:
+c: 50
+min_size: 15
+----------------------------
+Parameters:
+c:  50
+Min_size:  15
+Distance metric:  SAD
+Image dimension: (400, 590, 111)
+Data loaded
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  941032
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  7749
+Checkpoint : postprocess 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  376
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  230
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.15533008589
+62 segments filtered based on LFI values.
+# of road segments after shape filtering:  168
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  1229 7450 359
+Precision:  0.141606175827
+Recall:  0.773929471033
+=====================================================================
+Case 3:
+c: 60
+min_size: 15
+----------------------------
+Parameters:
+c:  60
+Min_size:  15
+Distance metric:  SAD
+Image dimension: (400, 590, 111)
+Data loaded
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  941032
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  7005
+Checkpoint : postprocess 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  341
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  207
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.13807118746
+74 segments filtered based on LFI values.
+# of road segments after shape filtering:  133
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  1045 6592 543
+Precision:  0.136833835276
+Recall:  0.658060453401
+=====================================================================
+Case 4:
+c: 70
+min_size: 15
+----------------------------
+Parameters:
+c:  70
+Min_size:  15
+Distance metric:  SAD
+Image dimension: (400, 590, 111)
+Data loaded
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  941032
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  6424
+Checkpoint : postprocess 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  328
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  190
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.10355339059
+97 segments filtered based on LFI values.
+# of road segments after shape filtering:  93
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  963 5629 625
+Precision:  0.146086165049
+Recall:  0.606423173804
+=====================================================================
+Case 5:
+c: 80
+min_size: 15
+----------------------------
+Parameters:
+c:  80
+Min_size:  15
+Distance metric:  SAD
+Image dimension: (400, 590, 111)
+Data loaded
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  941032
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  6040
+Checkpoint : postprocess 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  313
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  171
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.13807118746
+93 segments filtered based on LFI values.
+# of road segments after shape filtering:  78
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  922 5188 666
+Precision:  0.150900163666
+Recall:  0.580604534005
+=====================================================================
+Case 6:
+c: 90
+min_size: 15
+----------------------------
+Parameters:
+c:  90
+Min_size:  15
+Distance metric:  SAD
+Image dimension: (400, 590, 111)
+Data loaded
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  941032
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  5750
+Checkpoint : postprocess 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  299
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  163
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.108902902
+85 segments filtered based on LFI values.
+# of road segments after shape filtering:  78
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  981 4721 607
+Precision:  0.172044896528
+Recall:  0.617758186398
+=====================================================================
+Case 7:
+c: 100
+min_size: 15
+----------------------------
+Parameters:
+c:  100
+Min_size:  15
+Distance metric:  SAD
+Image dimension: (400, 590, 111)
+Data loaded
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  941032
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  5450
+Checkpoint : postprocess 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  283
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  141
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.15533008589
+77 segments filtered based on LFI values.
+# of road segments after shape filtering:  64
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  938 4279 650
+Precision:  0.179796818095
+Recall:  0.590680100756
+=====================================================================
+Case 8:
+c: 110
+min_size: 15
+----------------------------
+Parameters:
+c:  110
+Min_size:  15
+Distance metric:  SAD
+Image dimension: (400, 590, 111)
+Data loaded
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  941032
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  5177
+Checkpoint : postprocess 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  271
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  133
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.15533008589
+72 segments filtered based on LFI values.
+# of road segments after shape filtering:  61
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  780 4455 808
+Precision:  0.14899713467
+Recall:  0.491183879093
+=====================================================================
+Case 9:
+c: 120
+min_size: 15
+----------------------------
+Parameters:
+c:  120
+Min_size:  15
+Distance metric:  SAD
+Image dimension: (400, 590, 111)
+Data loaded
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  941032
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  4950
+Checkpoint : postprocess 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  252
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  124
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.15533008589
+67 segments filtered based on LFI values.
+# of road segments after shape filtering:  57
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  753 4654 835
+Precision:  0.139263917144
+Recall:  0.474181360202
+=====================================================================
+Case 10:
+c: 130
+min_size: 15
+----------------------------
+Parameters:
+c:  130
+Min_size:  15
+Distance metric:  SAD
+Image dimension: (400, 590, 111)
+Data loaded
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  941032
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  4757
+Checkpoint : postprocess 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  244
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  131
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.15533008589
+76 segments filtered based on LFI values.
+# of road segments after shape filtering:  55
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  806 3790 782
+Precision:  0.175369886858
+Recall:  0.507556675063
+=====================================================================
+Case 11:
+c: 140
+min_size: 15
+----------------------------
+Parameters:
+c:  140
+Min_size:  15
+Distance metric:  SAD
+Image dimension: (400, 590, 111)
+Data loaded
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  941032
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  4622
+Checkpoint : postprocess 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  272
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  145
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.15533008589
+91 segments filtered based on LFI values.
+# of road segments after shape filtering:  54
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  698 3858 890
+Precision:  0.153204565408
+Recall:  0.439546599496

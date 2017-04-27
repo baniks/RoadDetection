@@ -1,0 +1,342 @@
+Mean=>
+==================================================================================================
+/usr/bin/python2.7 /home/soubarna/Documents/Workspace/Python_Hyperspectral_Segmentation/main.py
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+
+==============================
+Segmentation for c:  50
+min_size:  5
+Components joined: 228861
+EU Graph segmented
+EU segments merged
+No of segments 4380
+Roof: 0
+Pavement:  10322
+veg:  117500
+tree:  71581
+soil:  36597
+Other:  0
+tp, fp, fn:  1363 8959 225
+precision:  0.132048052703
+recall:  0.858312342569
+(10322, 2)
+
+==============================
+Segmentation for c:  75
+min_size:  5
+Components joined: 230155
+EU Graph segmented
+EU segments merged
+No of segments 3284
+Roof: 0
+Pavement:  646
+veg:  111555
+tree:  90532
+soil:  33267
+Other:  0
+tp, fp, fn:  13 633 1575
+precision:  0.0201238390093
+recall:  0.00818639798489
+(646, 2)
+
+==============================
+Segmentation for c:  100
+min_size:  5
+Components joined: 230818
+EU Graph segmented
+EU segments merged
+No of segments 2758
+Roof: 0
+Pavement:  351
+veg:  108107
+tree:  94809
+soil:  32733
+Other:  0
+tp, fp, fn:  3 348 1585
+precision:  0.00854700854701
+recall:  0.00188916876574
+(351, 2)
+
+==============================
+Segmentation for c:  125
+min_size:  5
+Components joined: 231337
+EU Graph segmented
+EU segments merged
+No of segments 2342
+Roof: 0
+Pavement:  24
+veg:  109697
+tree:  95227
+soil:  31052
+Other:  0
+tp, fp, fn:  0 24 1588
+precision:  0.0
+recall:  0.0
+(24, 2)
+
+==============================
+Segmentation for c:  150
+min_size:  5
+Components joined: 231620
+EU Graph segmented
+EU segments merged
+No of segments 2097
+Roof: 0
+Pavement:  387
+veg:  108712
+tree:  96639
+soil:  30262
+Other:  0
+tp, fp, fn:  0 387 1588
+precision:  0.0
+recall:  0.0
+(387, 2)
+
+==============================
+Segmentation for c:  175
+min_size:  5
+Components joined: 231888
+EU Graph segmented
+EU segments merged
+No of segments 1901
+Roof: 0
+Pavement:  93
+veg:  106546
+tree:  99755
+soil:  29606
+Other:  0
+tp, fp, fn:  0 93 1588
+precision:  0.0
+recall:  0.0
+(93, 2)
+
+==============================
+Segmentation for c:  50
+min_size:  10
+Components joined: 228861
+EU Graph segmented
+EU segments merged
+No of segments 3809
+Roof: 0
+Pavement:  64
+veg:  113577
+tree:  87452
+soil:  34907
+Other:  0
+tp, fp, fn:  0 64 1588
+precision:  0.0
+recall:  0.0
+(64, 2)
+
+==============================
+Segmentation for c:  75
+min_size:  10
+Components joined: 230155
+EU Graph segmented
+EU segments merged
+No of segments 2762
+Roof: 0
+Pavement:  0
+veg:  109688
+tree:  94213
+soil:  32099
+Other:  0
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  100
+min_size:  10
+Components joined: 230818
+EU Graph segmented
+EU segments merged
+No of segments 2259
+Roof: 0
+Pavement:  0
+veg:  106410
+tree:  97045
+soil:  32545
+Other:  0
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  125
+min_size:  10
+Components joined: 231337
+EU Graph segmented
+EU segments merged
+No of segments 1892
+Roof: 0
+Pavement:  0
+veg:  108249
+tree:  97014
+soil:  30737
+Other:  0
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  150
+min_size:  10
+Components joined: 231620
+EU Graph segmented
+EU segments merged
+No of segments 1673
+Roof: 0
+Pavement:  0
+veg:  107733
+tree:  98417
+soil:  29850
+Other:  0
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  175
+min_size:  10
+Components joined: 231888
+EU Graph segmented
+EU segments merged
+No of segments 1503
+Roof: 0
+Pavement:  0
+veg:  105652
+tree:  100655
+soil:  29693
+Other:  0
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  50
+min_size:  15
+Components joined: 228861
+EU Graph segmented
+EU segments merged
+No of segments 3552
+Roof: 0
+Pavement:  70
+veg:  113198
+tree:  87906
+soil:  34826
+Other:  0
+tp, fp, fn:  0 70 1588
+precision:  0.0
+recall:  0.0
+(70, 2)
+
+==============================
+Segmentation for c:  75
+min_size:  15
+Components joined: 230155
+EU Graph segmented
+EU segments merged
+No of segments 2553
+Roof: 0
+Pavement:  0
+veg:  108580
+tree:  95441
+soil:  31979
+Other:  0
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  100
+min_size:  15
+Components joined: 230818
+EU Graph segmented
+EU segments merged
+No of segments 2067
+Roof: 0
+Pavement:  0
+veg:  106066
+tree:  97728
+soil:  32206
+Other:  0
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  125
+min_size:  15
+Components joined: 231337
+EU Graph segmented
+EU segments merged
+No of segments 1714
+Roof: 0
+Pavement:  0
+veg:  107993
+tree:  97736
+soil:  30271
+Other:  0
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  150
+min_size:  15
+Components joined: 231620
+EU Graph segmented
+EU segments merged
+No of segments 1506
+Roof: 0
+Pavement:  0
+veg:  107082
+tree:  98888
+soil:  30030
+Other:  0
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+
+==============================
+Segmentation for c:  175
+min_size:  15
+Components joined: 231888
+EU Graph segmented
+EU segments merged
+No of segments 1348
+Roof: 0
+Pavement:  0
+veg:  105090
+tree:  101198
+soil:  29712
+Other:  0
+tp, fp, fn:  0 0 0
+precision:  0.0
+recall:  0.0
+(0,)
+End
+Summary:
+Distance measure:  EU
+Spectral library match - distance grouped by level2
+min_size:  [ 5 10 15]
+c:  [50, 75, 100, 125, 150, 175]
+precision:  [0.13204805270296455, 0.020123839009287926, 0.008547008547008548, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+recall:  [0.8583123425692695, 0.00818639798488665, 0.001889168765743073, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+================================================================================================

@@ -1,0 +1,32 @@
+/usr/bin/python2.7 /home/soubarna/Documents/Workspace/Python_Hyperspectral_Segmentation/main.py
+Parameters:
+c:  90
+Min_size:  10
+Distance metric:  SAD
+Image dimension: (500, 580, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+Graph loaded
+Number of segments before merging:  1156762
+Checkpoint : build graph ended.
+Checkpoint : segment graph ended.
+No of segments after merging:  8608
+Checkpoint : post-process 1 ended.
+Checkpoint : mean spectra ended.
+Checkpoint : classify by NN ended.
+# of segments labelled as road:  889
+Checkpoint : filter by road label ended.
+PP2| # of segments after merging:  532
+Checkpoint : post-process 2 ended.
+Checkpoint : calculate LFI ended.
+Perimeter/Area score min:  0.0 max:  1.13807118746
+341 segments filtered based on LFI values.
+# of road segments after shape filtering:  191
+Checkpoint : filter by LFI ended.
+tp, fp, fn:  517 12788 272
+Precision:  0.0388575723412
+Recall:  0.65525982256
+

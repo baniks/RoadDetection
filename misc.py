@@ -5,7 +5,7 @@ import math
 def unique2d(a):
     x, y = a.T
     b = x + y*1.0j
-    idx = np.unique(b,return_index=True)[1]
+    idx = np.unique(b, return_index=True)[1]
     return a[idx]
 
 
@@ -28,7 +28,9 @@ def dist_sad(im,x1, y1, x2, y2):
         numr += px_1[d]*px_2[d]
         denom_1 += px_1[d] * px_1[d]
         denom_2 += px_2[d] * px_2[d]
-    val = math.acos(numr / (math.sqrt(denom_1) * math.sqrt(denom_2)))
+
+    cos_angle = numr / (math.sqrt(denom_1) * math.sqrt(denom_2))
+    val = math.acos(min(1, max(cos_angle, -1)))
     return val
 
 

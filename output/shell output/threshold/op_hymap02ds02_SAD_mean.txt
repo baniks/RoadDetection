@@ -1,0 +1,211 @@
+=====================================================================
+Case 1:
+c: 50
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+Graph loaded
+Segmentation for c:  50
+Min_size:  10
+Distance metric:  SAD
+Components joined: 228198
+Graph segmented
+SAD segments merged
+No of resultant segments:  4360
+Roof: 0
+Pavement:  10056
+veg:  117000
+tree:  70976
+soil:  37968
+Other:  0
+tp, fp, fn:  1275 8781 313
+precision:  0.126789976134
+recall:  0.802896725441
+(10056, 2)
+End
+=====================================================================
+Case 2:
+c: 60
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+Graph loaded
+Segmentation for c:  60
+Min_size:  10
+Distance metric:  SAD
+Components joined: 228947
+Graph segmented
+SAD segments merged
+No of resultant segments:  3738
+Roof: 0
+Pavement:  10095
+veg:  117528
+tree:  70926
+soil:  37451
+Other:  0
+tp, fp, fn:  1253 8842 335
+precision:  0.124120851907
+recall:  0.789042821159
+(10095, 2)
+End
+=====================================================================
+Case 3:
+c: 70
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+Graph loaded
+Segmentation for c:  70
+Min_size:  10
+Distance metric:  SAD
+Components joined: 229542
+Graph segmented
+SAD segments merged
+No of resultant segments:  3266
+Roof: 0
+Pavement:  10059
+veg:  118643
+tree:  70286
+soil:  37012
+Other:  0
+tp, fp, fn:  1224 8835 364
+precision:  0.121682075753
+recall:  0.770780856423
+(10059, 2)
+End
+=====================================================================
+Case 4:
+c: 80
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+Graph loaded
+Segmentation for c:  80
+Min_size:  10
+Distance metric:  SAD
+Components joined: 229934
+Graph segmented
+SAD segments merged
+No of resultant segments:  2941
+Roof: 0
+Pavement:  9485
+veg:  118708
+tree:  70043
+soil:  37764
+Other:  0
+tp, fp, fn:  1265 8220 323
+precision:  0.133368476542
+recall:  0.796599496222
+(9485, 2)
+End
+=====================================================================
+Case 5:
+c: 90
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+Graph loaded
+Segmentation for c:  90
+Min_size:  10
+Distance metric:  SAD
+Components joined: 230222
+Graph segmented
+SAD segments merged
+No of resultant segments:  2690
+Roof: 0
+Pavement:  9042
+veg:  119032
+tree:  70672
+soil:  37254
+Other:  0
+tp, fp, fn:  1229 7813 359
+precision:  0.135921256359
+recall:  0.773929471033
+(9042, 2)
+End
+=====================================================================
+Case 6:
+c: 100
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+Graph loaded
+Segmentation for c:  100
+Min_size:  10
+Distance metric:  SAD
+Components joined: 230525
+Graph segmented
+SAD segments merged
+No of resultant segments:  2455
+Roof: 0
+Pavement:  9117
+veg:  120395
+tree:  69955
+soil:  36533
+Other:  0
+tp, fp, fn:  1238 7879 350
+precision:  0.135790281891
+recall:  0.77959697733
+(9117, 2)
+End
+=====================================================================
+Case 7:
+c: 110
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+Graph loaded
+Segmentation for c:  110
+Min_size:  10
+Distance metric:  SAD
+Components joined: 230799
+Graph segmented
+SAD segments merged
+No of resultant segments:  2288
+Roof: 0
+Pavement:  9793
+veg:  119671
+tree:  69544
+soil:  36992
+Other:  0
+tp, fp, fn:  1187 8606 401
+precision:  0.121209026856
+recall:  0.747481108312
+(9793, 2)
+End
+

@@ -51,17 +51,17 @@ def classify(in_spectra):
     return classified_labels
 
 
-def calc_precision_recall(road_seg_px_list):
+def calc_precision_recall(road_seg_id_px_list, ds_name):
     """
     Calculates precision and recall by comparing the pixels labelled as road with ground truth
-    :param road_seg_px_list: segments mapped as roads and corresponding segment to pixel mapping
+    :param road_seg_id_px_list: segments mapped as roads and corresponding segment id to pixel mapping
     :return:
     precision: calculated precision value
     recall: calculated recall value
     """
 
     # Load GT (infrared image, roads marked with blue manually)
-    gt = cv2.imread("images/hymap02_ds03_infra_E_highroads.jpg")
+    gt = cv2.imread("data/%s_infra_GT_highroads.jpg" % ds_name)
 
     # Find pixels mapped as road (marked in blue) from ground truth image
     blue = np.array([254, 0, 0])
@@ -79,8 +79,8 @@ def calc_precision_recall(road_seg_px_list):
 
     # classified road pixels
     road_pxs_lst = []
-    for i in range(0, len(road_seg_px_list)):
-        road_pxs_lst += road_seg_px_list[i]
+    for i in range(0, len(road_seg_id_px_list)):
+        road_pxs_lst += road_seg_id_px_list[i][1]
     road_pxs = np.asarray(road_pxs_lst)
 
     precision = 0.0
@@ -89,10 +89,7 @@ def calc_precision_recall(road_seg_px_list):
     fp = 0
     fn = 0
 
-    print gt_road_pxs.shape
-    print road_pxs.shape
-
-    if len(road_seg_px_list) > 0:
+    if len(road_seg_id_px_list) > 0:
         # tp = len(multidim_intersect(gt_road_pxs, road_pxs))
         # fp = len(multidim_difference(road_pxs, gt_road_pxs))
         # fn = len(multidim_difference(gt_road_pxs, road_pxs))

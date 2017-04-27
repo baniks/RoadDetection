@@ -1,0 +1,293 @@
+=====================================================================
+Case 1:
+c: 10
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+edges loaded
+Segmentation for c:  10
+min_size:  10
+Components joined: 212059
+SAD Graph segmented
+SAD segments merged
+No of segments 17011
+Roof: 406
+Pavement:  1378
+veg:  29976
+tree:  200074
+soil:  3663
+Other:  503
+tp, fp, fn:  25 1353 1563
+precision:  0.0181422351234
+recall:  0.0157430730479
+(1378, 2)
+End
+=====================================================================
+Case 2:
+c: 30
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+edges loaded
+Segmentation for c:  30
+min_size:  10
+Components joined: 225227
+SAD Graph segmented
+SAD segments merged
+No of segments 6683
+Roof: 211
+Pavement:  683
+veg:  26344
+tree:  206320
+soil:  2338
+Other:  104
+tp, fp, fn:  13 670 1575
+precision:  0.0190336749634
+recall:  0.00818639798489
+(683, 2)
+End
+=====================================================================
+Case 3:
+c: 50
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+edges loaded
+Segmentation for c:  50
+min_size:  10
+Components joined: 228198
+SAD Graph segmented
+SAD segments merged
+No of segments 4360
+Roof: 18
+Pavement:  333
+veg:  24515
+tree:  209185
+soil:  1776
+Other:  173
+tp, fp, fn:  17 316 1571
+precision:  0.0510510510511
+recall:  0.0107052896725
+(333, 2)
+End
+=====================================================================
+Case 4:
+c: 70
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+edges loaded
+Segmentation for c:  70
+min_size:  10
+Components joined: 229542
+SAD Graph segmented
+SAD segments merged
+No of segments 3266
+Roof: 25
+Pavement:  272
+veg:  24000
+tree:  210148
+soil:  1449
+Other:  106
+tp, fp, fn:  31 241 1557
+precision:  0.113970588235
+recall:  0.0195214105793
+(272, 2)
+End
+=====================================================================
+Case 5:
+c: 90
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+edges loaded
+Segmentation for c:  90
+min_size:  10
+Components joined: 230222
+SAD Graph segmented
+SAD segments merged
+No of segments 2690
+Roof: 45
+Pavement:  48
+veg:  22451
+tree:  211959
+soil:  1405
+Other:  92
+tp, fp, fn:  0 48 1588
+precision:  0.0
+recall:  0.0
+(48, 2)
+End
+=====================================================================
+Case 6:
+c: 110
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+edges loaded
+Segmentation for c:  110
+min_size:  10
+Components joined: 230799
+SAD Graph segmented
+SAD segments merged
+No of segments 2288
+Roof: 11
+Pavement:  149
+veg:  21895
+tree:  212814
+soil:  1121
+Other:  10
+tp, fp, fn:  0 149 1588
+precision:  0.0
+recall:  0.0
+(149, 2)
+End
+=====================================================================
+Case 7:
+c: 130
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+edges loaded
+Segmentation for c:  130
+min_size:  10
+Components joined: 231217
+SAD Graph segmented
+SAD segments merged
+No of segments 2033
+Roof: 0
+Pavement:  38
+veg:  20789
+tree:  214034
+soil:  1139
+Other:  0
+tp, fp, fn:  0 38 1588
+precision:  0.0
+recall:  0.0
+(38, 2)
+End
+=====================================================================
+Case 8:
+c: 150
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+edges loaded
+Segmentation for c:  150
+min_size:  10
+Components joined: 231462
+SAD Graph segmented
+SAD segments merged
+No of segments 1824
+Roof: 23
+Pavement:  34
+veg:  21058
+tree:  214251
+soil:  611
+Other:  23
+tp, fp, fn:  0 34 1588
+precision:  0.0
+recall:  0.0
+(34, 2)
+End
+=====================================================================
+Case 9:
+c: 170
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+edges loaded
+Segmentation for c:  170
+min_size:  10
+Components joined: 231696
+SAD Graph segmented
+SAD segments merged
+No of segments 1666
+Roof: 23
+Pavement:  13
+veg:  20124
+tree:  215127
+soil:  677
+Other:  36
+tp, fp, fn:  0 13 1588
+precision:  0.0
+recall:  0.0
+(13, 2)
+End
+=====================================================================
+Case 10:
+c: 190
+min_size: 10
+----------------------------
+(400, 590, 111)
+Data loaded
+Cleaned nan/inf:  0
+Data cleaning: removed nan/inf..
+Channels smoothed
+Final data check: Success
+edges loaded
+Segmentation for c:  190
+min_size:  10
+Components joined: 231856
+SAD Graph segmented
+SAD segments merged
+No of segments 1540
+Roof: 0
+Pavement:  110
+veg:  20337
+tree:  214994
+soil:  537
+Other:  22
+tp, fp, fn:  0 110 1588
+precision:  0.0
+recall:  0.0
+(110, 2)
+End
+
+243, 150
+193,265

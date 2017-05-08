@@ -4,9 +4,10 @@ import cv2
 import universe
 
 
-spectral_library_path = "/home/soubarna/Documents/Independent Study/Hyperspectral data/Berlin Urban Gradient 2009 02 additional data/02_additional_data/spectral_library/SpecLib_Berlin_Urban_Gradient_2009.hdr"
+spectral_library_path = "data/Hyperspectral data/Berlin Urban Gradient 2009 02 additional data/02_additional_data/spectral_library/SpecLib_Berlin_Urban_Gradient_2009.hdr"
 
-def classify(in_spectra):
+
+def classify_nn(in_spectra):
     """
     Classifies the segments by nearest neighbor matching
     :param in_spectra: spectra of the segments
@@ -55,6 +56,7 @@ def calc_precision_recall(road_seg_id_px_list, ds_name):
     """
     Calculates precision and recall by comparing the pixels labelled as road with ground truth
     :param road_seg_id_px_list: segments mapped as roads and corresponding segment id to pixel mapping
+    :param ds_name: dataset name
     :return:
     precision: calculated precision value
     recall: calculated recall value
@@ -104,52 +106,36 @@ def calc_precision_recall(road_seg_id_px_list, ds_name):
     return precision, recall, road_pxs
 
 
-def multidim_intersect(arr1, arr2):
-    """
-    calculates set intersection for two multi-dimensional sets
-    :param arr1: set 1
-    :param arr2: set 2
-    :return:
-    intersection of set 1 and set 2
-    """
-
-    arr1_view = arr1.view([('', arr1.dtype)]*arr1.shape[1])
-    arr2_view = arr2.view([('', arr2.dtype)]*arr2.shape[1])
-    intersected = np.intersect1d(arr1_view, arr2_view)
-    return intersected.view(arr1.dtype).reshape(-1, arr1.shape[1])
-
-
-def multidim_difference(arr1, arr2):
-    """
-    calculates difference of two multi-dimensional sets
-    :param arr1: set 1
-    :param arr2: set 2
-    :return:
-    difference of set 1 and 2
-    """
-    arr1_view = arr1.view([('', arr1.dtype)]*arr1.shape[1])
-    arr2_view = arr2.view([('', arr2.dtype)]*arr2.shape[1])
-    difference = np.setdiff1d(arr1_view, arr2_view)
-    return difference.view(arr1.dtype).reshape(-1, arr1.shape[1])
-
-
 def unmix_spectra(in_spectra):
+    """
+    Computes the full additive abundance vector for each segment
+    :param in_spectra: spectra of the segments
+    :return:
+    abundance_fa: full additive abundance map for the input segment
+    """
     lib = open_image(spectral_library_path)
     spectra_lib = lib.spectra
     spectra_lm = np.transpose(spectra_lib)
     inspectra_ln = np.transpose(in_spectra)
-    abundance_u = np.matmul(np.matmul(np.linalg.pinv(np.matmul(spectra_lib,spectra_lm)),spectra_lib),inspectra_ln)
-    z = np.ones((1,75))
-    part1 = np.matmul(np.linalg.pinv(np.matmul(spectra_lib,spectra_lm)),np.transpose(z))
-    part11 = np.matmul(part1,np.linalg.pinv(np.matmul(z,part1)))
-    part2 = np.matmul(z,abundance_u) - 1
-    abundance_fa = abundance_u - np.matmul(part11,part2)
+    abundance_u = np.matmul(np.matmul(np.linalg.pinv(np.matmul(spectra_lib, spectra_lm)), spectra_lib), inspectra_ln)
+    z = np.ones((1, spectra_lib.shape[0]))
+    part1 = np.matmul(np.linalg.pinv(np.matmul(spectra_lib, spectra_lm)), np.transpose(z))
+    part11 = np.matmul(part1, np.linalg.pinv(np.matmul(z, part1)))
+    part2 = np.matmul(z, abundance_u) - 1
+    abundance_fa = abundance_u - np.matmul(part11, part2)
     # im = seg_mean_spectra.reshape(1,seg_mean_spectra.shape[0],seg_mean_spectra.shape[1])
     # abundance_fa = unmix(im,spectra)
     return abundance_fa
 
 
-def classify_spectra_unmix(abundance):
+def classify_spectra_unmix(in_spectra):
+    """
+    Classifies the segments by linear spectral unmixing
+    :param in_spectra: spectra of the segments
+    :return:
+    classified_labels: labels of the segments
+    """
+    abundance = unmix_spectra(in_spectra)
     classfied_labels = []
     for seg_id in range(0,abundance.shape[1]):
         category_id = np.argmax(abundance[:,seg_id])
@@ -159,6 +145,11 @@ def classify_spectra_unmix(abundance):
 
 
 def map_category_level2(category_id):
+    """
+    map classified category_id or the band number to level 2 categories
+    :param category_id: band number
+    :return:
+    """
     # Level2
     # names[0:23] - roof
     # names[23:30] - pavement

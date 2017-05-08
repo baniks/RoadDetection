@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.12.31)  26 APR 2017 21:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.12.31)  8 MAY 2017 11:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -486,20 +486,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \c@axiom=\count149
 \c@definition=\count150
 
-(./Independent_Study_Report.aux
-
-LaTeX Warning: Label `fig:gt' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:gt' multiply defined.
-
-
-LaTeX Warning: Label `fig:road_op' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:road_op' multiply defined.
-
-)
+(./Independent_Study_Report.aux)
 \openout1 = `Independent_Study_Report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 124.
@@ -517,7 +504,8 @@ LaTeX Font Info:    ... okay on input line 124.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: longtable package is loaded.
- (/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
 Package caption Info: rotating package is loaded.
@@ -622,12 +610,12 @@ e
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
 (./Independent_Study_Report.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 7.
+LaTeX Font Info:    Try loading font information for U+msa on input line 8.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 7.
+LaTeX Font Info:    Try loading font information for U+msb on input line 8.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -641,217 +629,338 @@ Underfull \hbox (badness 10000) in paragraph at lines 188--188
 tion _ trends / urban _ population _
  []
 
+[2
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2
-
-]
-<src/Hyperspectral_cube.png, id=22, 624.3325pt x 330.23375pt>
+] [3] <src/Hyperspectral_cube.png, id=26, 624.3325pt x 330.23375pt>
 File: src/Hyperspectral_cube.png Graphic file (type png)
 
 <use src/Hyperspectral_cube.png>
-Package pdftex.def Info: src/Hyperspectral_cube.png used on input line 201.
+Package pdftex.def Info: src/Hyperspectral_cube.png used on input line 204.
 (pdftex.def)             Requested size: 230.5427pt x 121.94269pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--204
-
+Underfull \hbox (badness 10000) in paragraph at lines 201--207
+\OT1/cmr/m/n/12 con-tain-ing two spa-tial di-men-sions and one spec-tral di-men
+-sion.
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
 <src/plant_spectra.png, id=27, 574.145pt x 338.26375pt>
 File: src/plant_spectra.png Graphic file (type png)
 
 <use src/plant_spectra.png>
-Package pdftex.def Info: src/plant_spectra.png used on input line 208.
+Package pdftex.def Info: src/plant_spectra.png used on input line 211.
 (pdftex.def)             Requested size: 314.37465pt x 185.21979pt.
 
 <src/spectral_unmixing.png, id=28, 824.07875pt x 200.75pt>
 File: src/spectral_unmixing.png Graphic file (type png)
 
 <use src/spectral_unmixing.png>
-Package pdftex.def Info: src/spectral_unmixing.png used on input line 217.
+Package pdftex.def Info: src/spectral_unmixing.png used on input line 220.
 (pdftex.def)             Requested size: 398.20662pt x 97.00523pt.
-
-Underfull \hbox (badness 1314) in paragraph at lines 204--221
-\OT1/cmr/m/n/12 spec-tral im-age is usu-ally rep-re-
- []
-
-[4 <./src/Hyperspectral_cube.png>]
-Package epstopdf Info: Source file: <src/model.eps>
-(epstopdf)                    date: 2017-04-26 02:40:18
-(epstopdf)                    size: 219473 bytes
-(epstopdf)             Output file: <src/model-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-04-26 02:40:29
-(epstopdf)                    size: 116005 bytes
-(epstopdf)             Command: <repstopdf --outfile=src/model-eps-converted-to
-.pdf src/model.eps>
-(epstopdf)             \includegraphics on input line 227.
-Package epstopdf Info: Output file is already uptodate.
-
-<src/model-eps-converted-to.pdf, id=37, 796.9775pt x 597.23125pt>
-File: src/model-eps-converted-to.pdf Graphic file (type pdf)
-
-<use src/model-eps-converted-to.pdf>
-Package pdftex.def Info: src/model-eps-converted-to.pdf used on input line 227.
-
-(pdftex.def)             Requested size: 419.16621pt x 314.107pt.
- [5 <./src/plant_spectra.png> <./src/spectral_unmixing.png>]
-<src/Berlin_Urban_Gradient_2009_Coverage2.png, id=43, 511.9125pt x 369.66106pt>
+ [4 <./src/Hyperspectral_cube.png>] [5 <./src/plant_spectra.png> <./src/spectra
+l_unmixing.png>]
+<src/Berlin_Urban_Gradient_2009_Coverage2.png, id=42, 511.9125pt x 369.66106pt>
 File: src/Berlin_Urban_Gradient_2009_Coverage2.png Graphic file (type png)
 <use src/Berlin_Urban_Gradient_2009_Coverage2.png>
 Package pdftex.def Info: src/Berlin_Urban_Gradient_2009_Coverage2.png used on i
-nput line 235.
-(pdftex.def)             Requested size: 251.50227pt x 181.61494pt.
+nput line 231.
+(pdftex.def)             Requested size: 356.29384pt x 257.28314pt.
+ [6 <./src/Berlin_Urban_Gradient_2009_Coverage2.png (PNG copy)>]
+Package epstopdf Info: Source file: <src/architecture2.eps>
+(epstopdf)                    date: 2017-05-01 15:55:42
+(epstopdf)                    size: 1140009 bytes
+(epstopdf)             Output file: <src/architecture2-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-05-01 15:56:06
+(epstopdf)                    size: 250797 bytes
+(epstopdf)             Command: <repstopdf --outfile=src/architecture2-eps-conv
+erted-to.pdf src/architecture2.eps>
+(epstopdf)             \includegraphics on input line 242.
+Package epstopdf Info: Output file is already uptodate.
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--238
+<src/architecture2-eps-converted-to.pdf, id=46, 796.9775pt x 597.23125pt>
+File: src/architecture2-eps-converted-to.pdf Graphic file (type pdf)
+
+<use src/architecture2-eps-converted-to.pdf>
+Package pdftex.def Info: src/architecture2-eps-converted-to.pdf used on input l
+ine 242.
+(pdftex.def)             Requested size: 419.16621pt x 314.107pt.
+ [7 <./src/architecture2-eps-converted-to.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 253--272
 
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 238--240
-\OT1/cmr/m/n/12 hi-er-ar-chies. The first level
- []
-
-
-Underfull \hbox (badness 1472) in paragraph at lines 238--240
-\OT1/cmr/m/n/12 and three of con-crete spec-
- []
-
-[6 <./src/model-eps-converted-to.pdf> <./src/Berlin_Urban_Gradient_2009_Coverag
-e2.png (PNG copy)>] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 269--271
+Underfull \hbox (badness 10000) in paragraph at lines 278--280
 
  []
 
-[8] <src/seg_input_file.jpg, id=58, 164.615pt x 170.6375pt>
-File: src/seg_input_file.jpg Graphic file (type jpg)
+[8] [9] [10] <src/seg_input_file1.jpg, id=70, 150.5625pt x 100.375pt>
+File: src/seg_input_file1.jpg Graphic file (type jpg)
 
-<use src/seg_input_file.jpg>
-Package pdftex.def Info: src/seg_input_file.jpg used on input line 300.
-(pdftex.def)             Requested size: 123.46094pt x 127.9778pt.
+<use src/seg_input_file1.jpg>
+Package pdftex.def Info: src/seg_input_file1.jpg used on input line 332.
+(pdftex.def)             Requested size: 135.50497pt x 90.33664pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 300--300
-[]\OT1/cmr/m/n/10 Input scene, a sub-
+Underfull \hbox (badness 10000) in paragraph at lines 332--332
+\OT1/cmr/m/n/10 from HyMap02 scene
  []
 
 
-Underfull \hbox (badness 3240) in paragraph at lines 300--300
-\OT1/cmr/m/n/10 region from HyMap02
+Underfull \hbox (badness 1281) in paragraph at lines 332--332
+\OT1/cmr/m/n/10 (bands R=0.7$\OML/cmm/m/it/10 ^^Vm$\OT1/cmr/m/n/10 , G=1.2
  []
 
-<src/seg_output_c70_EU.jpg, id=59, 164.615pt x 170.6375pt>
-File: src/seg_output_c70_EU.jpg Graphic file (type jpg)
+<src/segmented_EU_k_100_m_10.jpg, id=71, 300.12125pt x 199.74625pt>
+File: src/segmented_EU_k_100_m_10.jpg Graphic file (type jpg)
 
-<use src/seg_output_c70_EU.jpg>
-Package pdftex.def Info: src/seg_output_c70_EU.jpg used on input line 301.
-(pdftex.def)             Requested size: 123.46094pt x 127.9778pt.
+<use src/segmented_EU_k_100_m_10.jpg>
+Package pdftex.def Info: src/segmented_EU_k_100_m_10.jpg used on input line 333
+.
+(pdftex.def)             Requested size: 135.05331pt x 89.88498pt.
 
-Underfull \hbox (badness 5231) in paragraph at lines 301--301
-[]\OT1/cmr/m/n/10 Output for Eu-clidean
+<src/segmented_SAD_k_100_m_10.jpg, id=72, 300.12125pt x 199.74625pt>
+File: src/segmented_SAD_k_100_m_10.jpg Graphic file (type jpg)
+
+<use src/segmented_SAD_k_100_m_10.jpg>
+Package pdftex.def Info: src/segmented_SAD_k_100_m_10.jpg used on input line 33
+4.
+(pdftex.def)             Requested size: 135.05331pt x 89.88498pt.
+
+Underfull \hbox (badness 3954) in paragraph at lines 334--334
+\OT1/cmr/m/n/10 met-ric, $\OML/cmm/m/it/10 k \OT1/cmr/m/n/10 = 100$ and
  []
 
-<src/seg_output_c70_SAD.jpg, id=60, 164.615pt x 170.6375pt>
-File: src/seg_output_c70_SAD.jpg Graphic file (type jpg)
-
-<use src/seg_output_c70_SAD.jpg>
-Package pdftex.def Info: src/seg_output_c70_SAD.jpg used on input line 302.
-(pdftex.def)             Requested size: 123.46094pt x 127.9778pt.
-
-<src/gt_hymap02ds02_infra_highroads.jpg, id=61, 592.2125pt x 401.5pt>
+<src/gt_hymap02ds02_infra_highroads.jpg, id=73, 592.2125pt x 401.5pt>
 File: src/gt_hymap02ds02_infra_highroads.jpg Graphic file (type jpg)
 
 <use src/gt_hymap02ds02_infra_highroads.jpg>
 Package pdftex.def Info: src/gt_hymap02ds02_infra_highroads.jpg used on input l
-ine 308.
-(pdftex.def)             Requested size: 207.27747pt x 140.5271pt.
+ine 342.
+(pdftex.def)             Requested size: 177.66512pt x 120.45091pt.
 
-Underfull \hbox (badness 3536) in paragraph at lines 308--308
-\OT1/cmr/m/n/10 scene in in-frared (bands R=1.0014$\OML/cmm/m/it/10 ^^Vm$\OT1/c
-mr/m/n/10 ,
+Underfull \hbox (badness 2435) in paragraph at lines 342--342
+[]\OT1/cmr/m/n/10 Scene$1$, a ru-ral sub-section from
  []
 
-<src/op_hymap02ds02_SAD_mean_70_10.jpg, id=62, 592.2125pt x 401.5pt>
-File: src/op_hymap02ds02_SAD_mean_70_10.jpg Graphic file (type jpg)
 
-<use src/op_hymap02ds02_SAD_mean_70_10.jpg>
-Package pdftex.def Info: src/op_hymap02ds02_SAD_mean_70_10.jpg used on input li
-ne 309.
-(pdftex.def)             Requested size: 207.27747pt x 140.5271pt.
+Underfull \hbox (badness 10000) in paragraph at lines 342--342
+\OT1/cmr/m/n/10 R=1.0014$\OML/cmm/m/it/10 ^^Vm$\OT1/cmr/m/n/10 , G=1.0166 $\OML
+/cmm/m/it/10 ^^Vm$\OT1/cmr/m/n/10 ,
+ []
 
-<src/rec_prec_sad.png, id=63, 578.16pt x 433.62pt>
-File: src/rec_prec_sad.png Graphic file (type png)
- <use src/rec_prec_sad.png>
-Package pdftex.def Info: src/rec_prec_sad.png used on input line 315.
-(pdftex.def)             Requested size: 314.37465pt x 235.77898pt.
 
-<src/px_misclassified_203_277_spectra.png, id=64, 1007.4438pt x 588.2778pt>
-File: src/px_misclassified_203_277_spectra.png Graphic file (type png)
+Underfull \hbox (badness 1748) in paragraph at lines 342--342
+\OT1/cmr/m/n/10 B=1.0318$\OML/cmm/m/it/10 ^^Vm$\OT1/cmr/m/n/10 ), with ground t
+ruth
+ []
 
-<use src/px_misclassified_203_277_spectra.png>
-Package pdftex.def Info: src/px_misclassified_203_277_spectra.png used on input
- line 328.
-(pdftex.def)             Requested size: 201.48518pt x 117.65347pt.
+<src/road_op_hymap02_ds02_SAD_100_10_PP2_30.jpg, id=74, 592.2125pt x 401.5pt>
+File: src/road_op_hymap02_ds02_SAD_100_10_PP2_30.jpg Graphic file (type jpg)
 
-<src/px_true_tree57_385_204_spectra.png, id=65, 1003.1076pt x 579.6054pt>
-File: src/px_true_tree57_385_204_spectra.png Graphic file (type png)
+<use src/road_op_hymap02_ds02_SAD_100_10_PP2_30.jpg>
+Package pdftex.def Info: src/road_op_hymap02_ds02_SAD_100_10_PP2_30.jpg used on
+ input line 343.
+(pdftex.def)             Requested size: 177.66512pt x 120.45091pt.
+Package epstopdf Info: Source file: <src/gt_Berlin_Urban_Gradient_2009_pavement
+.eps>
+(epstopdf)                    date: 2017-05-03 03:20:24
+(epstopdf)                    size: 29221 bytes
+(epstopdf)             Output file: <src/gt_Berlin_Urban_Gradient_2009_pavement
+-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-05-03 03:20:58
+(epstopdf)                    size: 12393 bytes
+(epstopdf)             Command: <repstopdf --outfile=src/gt_Berlin_Urban_Gradie
+nt_2009_pavement-eps-converted-to.pdf src/gt_Berlin_Urban_Gradient_2009_pavemen
+t.eps>
+(epstopdf)             \includegraphics on input line 348.
+Package epstopdf Info: Output file is already uptodate.
 
-<use src/px_true_tree57_385_204_spectra.png>
-Package pdftex.def Info: src/px_true_tree57_385_204_spectra.png used on input l
-ine 330.
-(pdftex.def)             Requested size: 200.61797pt x 115.91902pt.
- (./Independent_Study_Report.bbl
-[9]
+<src/gt_Berlin_Urban_Gradient_2009_pavement-eps-converted-to.pdf, id=75, 233.87
+375pt x 512.91624pt>
+File: src/gt_Berlin_Urban_Gradient_2009_pavement-eps-converted-to.pdf Graphic f
+ile (type pdf)
+
+<use src/gt_Berlin_Urban_Gradient_2009_pavement-eps-converted-to.pdf>
+Package pdftex.def Info: src/gt_Berlin_Urban_Gradient_2009_pavement-eps-convert
+ed-to.pdf used on input line 348.
+(pdftex.def)             Requested size: 83.83195pt x 183.85924pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
+[]\OT1/cmr/bx/n/10.95 Figure 8:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
+|\OT1/cmr/m/n/10.95 Ground truth
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
+\OT1/cmr/m/n/10.95 from Berlin-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
+\OT1/cmr/m/n/10.95 Urban-Gradient
+ []
+
+
+Underfull \hbox (badness 6559) in paragraph at lines 349--349
+\OT1/cmr/m/n/10.95 dataset show-ing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
+\OT1/cmr/m/n/10.95 only the small
+ []
+
+
+Underfull \hbox (badness 5331) in paragraph at lines 349--349
+\OT1/cmr/m/n/10.95 roads in ur-ban
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 329--351
+
+ []
+
+[11 <./src/seg_input_file1.jpg> <./src/segmented_EU_k_100_m_10.jpg> <./src/segm
+ented_SAD_k_100_m_10.jpg>]
+Package epstopdf Info: Source file: <src/recall_prec_graph.eps>
+(epstopdf)                    date: 2017-05-03 20:23:54
+(epstopdf)                    size: 39478 bytes
+(epstopdf)             Output file: <src/recall_prec_graph-eps-converted-to.pdf
+>
+(epstopdf)                    date: 2017-05-03 20:24:10
+(epstopdf)                    size: 21946 bytes
+(epstopdf)             Command: <repstopdf --outfile=src/recall_prec_graph-eps-
+converted-to.pdf src/recall_prec_graph.eps>
+(epstopdf)             \includegraphics on input line 355.
+Package epstopdf Info: Output file is already uptodate.
+
+<src/recall_prec_graph-eps-converted-to.pdf, id=81, 1174.3875pt x 641.39626pt>
+File: src/recall_prec_graph-eps-converted-to.pdf Graphic file (type pdf)
+
+<use src/recall_prec_graph-eps-converted-to.pdf>
+Package pdftex.def Info: src/recall_prec_graph-eps-converted-to.pdf used on inp
+ut line 355.
+(pdftex.def)             Requested size: 377.24702pt x 206.03394pt.
+Package epstopdf Info: Source file: <src/unmix_misclassification_spectra.eps>
+(epstopdf)                    date: 2017-05-03 01:54:54
+(epstopdf)                    size: 60388 bytes
+(epstopdf)             Output file: <src/unmix_misclassification_spectra-eps-co
+nverted-to.pdf>
+(epstopdf)                    date: 2017-05-03 01:54:58
+(epstopdf)                    size: 27752 bytes
+(epstopdf)             Command: <repstopdf --outfile=src/unmix_misclassificatio
+n_spectra-eps-converted-to.pdf src/unmix_misclassification_spectra.eps>
+(epstopdf)             \includegraphics on input line 363.
+Package epstopdf Info: Output file is already uptodate.
+
+<src/unmix_misclassification_spectra-eps-converted-to.pdf, id=82, 1174.3875pt x
+ 641.39626pt>
+File: src/unmix_misclassification_spectra-eps-converted-to.pdf Graphic file (ty
+pe pdf)
+ <use src/unmix_misclassification_spectra-eps-converted-to.pdf>
+Package pdftex.def Info: src/unmix_misclassification_spectra-eps-converted-to.p
+df used on input line 363.
+(pdftex.def)             Requested size: 377.24702pt x 206.03394pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12 <./src/gt_hymap02ds02_infra_highroads.jpg> <./src/road_op_hymap02_ds02_SAD
+_100_10_PP2_30.jpg> <./src/gt_Berlin_Urban_Gradient_2009_pavement-eps-converted
+-to.pdf>]
+[13 <./src/recall_prec_graph-eps-converted-to.pdf> <./src/unmix_misclassificati
+on_spectra-eps-converted-to.pdf>]
+<src/hymap02_ds01_infra_GT_highroads.jpg, id=172, 582.175pt x 501.875pt>
+File: src/hymap02_ds01_infra_GT_highroads.jpg Graphic file (type jpg)
+
+<use src/hymap02_ds01_infra_GT_highroads.jpg>
+Package pdftex.def Info: src/hymap02_ds01_infra_GT_highroads.jpg used on input 
+line 373.
+(pdftex.def)             Requested size: 157.18935pt x 135.50806pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 373--373
+[]\OT1/cmr/m/n/10 Scene$2$, a semi-urban sub-
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 373--373
+\OT1/cmr/m/n/10 in-frared (bands R=1.0014$\OML/cmm/m/it/10 ^^Vm$\OT1/cmr/m/n/10
+ ,
+ []
+
+
+Underfull \hbox (badness 1275) in paragraph at lines 373--373
+\OT1/cmr/m/n/10 G=1.0166 $\OML/cmm/m/it/10 ^^Vm$\OT1/cmr/m/n/10 , B=1.0318$\OML
+/cmm/m/it/10 ^^Vm$\OT1/cmr/m/n/10 ),
+ []
+
+
+Underfull \hbox (badness 2913) in paragraph at lines 373--373
+\OT1/cmr/m/n/10 with ground truth high-roads
+ []
+
+
+<src/road_op_hymap02_ds01_SAD_100_20_PP2_30.jpg, id=173, 582.175pt x 501.875pt>
+File: src/road_op_hymap02_ds01_SAD_100_20_PP2_30.jpg Graphic file (type jpg)
+<use src/road_op_hymap02_ds01_SAD_100_20_PP2_30.jpg>
+Package pdftex.def Info: src/road_op_hymap02_ds01_SAD_100_20_PP2_30.jpg used on
+ input line 374.
+(pdftex.def)             Requested size: 157.18935pt x 135.50806pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
+[]\OT1/cmr/m/n/10 Classified roads for dis-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
+\OML/cmm/m/it/10 min[]size \OT1/cmr/m/n/10 = 10$ and
+ []
+
+[14 <./src/hymap02_ds01_infra_GT_highroads.jpg> <./src/road_op_hymap02_ds01_SAD
+_100_20_PP2_30.jpg>] (./Independent_Study_Report.bbl
 Underfull \hbox (badness 2351) in paragraph at lines 33--39
 []\OT1/cmr/m/n/12 Martha S Gilmore, David R Thomp-son, Laura J An-der-son, Nade
 r
  []
 
-[10 <./src/seg_input_file.jpg> <./src/seg_output_c70_EU.jpg> <./src/seg_output_
-c70_SAD.jpg> <./src/gt_hymap02ds02_infra_highroads.jpg> <./src/op_hymap02ds02_S
-AD_mean_70_10.jpg>] [11 <./src/rec_prec_sad.png> <./src/px_misclassified_203_27
-7_spectra.png> <./src/px_true_tree57_385_204_spectra.png>]
-Underfull \hbox (badness 3271) in paragraph at lines 58--63
+
+Underfull \hbox (badness 3271) in paragraph at lines 63--68
 []\OT1/cmr/m/n/12 R.B.Smith.  In-tro-duc-tion to Hy-per-spec-tral Imag-ing.  $\
 OT1/cmtt/m/n/12 http : / / www .
  []
 
-) [12] (./Independent_Study_Report.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+[15]) [16] (./Independent_Study_Report.aux) ) 
 Here is how much of TeX's memory you used:
- 8395 strings out of 494910
- 122551 string characters out of 6179835
- 213065 words of memory out of 5000000
- 11503 multiletter control sequences out of 15000+600000
+ 8437 strings out of 494910
+ 123902 string characters out of 6179835
+ 213231 words of memory out of 5000000
+ 11541 multiletter control sequences out of 15000+600000
  14693 words of font info for 57 fonts, out of 8000000 for 9000
  37 hyphenation exceptions out of 8191
- 38i,14n,43p,3336b,408s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Independent_Study_Report.pdf (14 pages, 7498779 bytes).
+ 38i,14n,43p,1908b,406s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmtt12.pfb>
+Output written on Independent_Study_Report.pdf (18 pages, 7804074 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
+ 239 PDF objects out of 1000 (max. 8388607)
+ 105 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

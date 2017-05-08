@@ -10,9 +10,11 @@ from skimage import measure
 def build_graph(run_flag, dist_flag, img, ds_name):
     """
     buils a graph with nodes for each pixel and edges with distance weight
+    and saves the graph in data/edges_<ds_name>_<dist_flag>.dat for later use
     :param run_flag: N for new run, E for existing run
     :param dist_flag: distance metric EU (Eucledian distance) or SAD (Spectral angle distance)
     :param img: input image
+    :param ds_name: dataset name
     :return:
     edges: a list of edge class object
     """
@@ -169,6 +171,10 @@ def segment_graph(num_vertices, edges, c):
 
 
 def get_colors():
+    """
+    get list of rgb colors
+    :return:
+    """
     # create color table
     colors_ = list(six.iteritems(colors.cnames))
 
@@ -256,7 +262,7 @@ def map_segment_to_pxs(univ, height, width, segid_uniq_list):
 
 def get_perim_area(seg_id_px_arr, height, width):
     """
-
+    calculates shape score value (perimeter/area) for input segments
     :param seg_id_px_arr: segment id to pixel mappings
     :param height: height of image
     :param width: width of image
@@ -348,17 +354,17 @@ def filter_shape(seg_id_px_arr, shp_score_list, label_list, thres1, thres2):
     # seg_id_px_arr1 = np.sort(seg_id_px_arr, axis=0)
 
     cnt = 0
-    mask = np.zeros(len(shp_score_list), dtype=bool)
+    mask = np.ones(len(shp_score_list), dtype=bool)
 
     for idx in range(len(shp_score_list) - 1, -1, -1):
         if thres1 <= shp_score_list[idx] < thres2:
             cnt += 1
-            mask[idx] = True
+            mask[idx] = False
 
     # remove segment from seg_px_list
     # seg_id_px_arr = np.delete(seg_id_px_arr, idx_list, 0)
     print cnt, "segments filtered based on shape scores."
-    return seg_id_px_arr[~mask]
+    return seg_id_px_arr[mask]
 
 
 def post_process(univ, edges, min_size, height, width):
@@ -418,6 +424,14 @@ def merge_small_segments(univ, edges, min_size):
 
 
 def color_segments(seg_px_list, width, height):
+    """
+    color segments with random rgb colors
+    :param seg_px_list: list of segment to pixel mappings
+    :param width: width of input image
+    :param height: height of input image
+    :return:
+    colored image
+    """
     # pick random colors for each component
     rgb = get_colors()
     rgb_len = len(rgb)
@@ -447,6 +461,7 @@ def post_process2(univ, edges, candidate_seg_id_px_list, min_size):
 
     # filter road edges
     filtered_edges = filter_road_edge(edges, candidate_seg_id_px_list)
+    print "CKPT: # of filtered edges: ", len(filtered_edges)
 
     # find inter segment edges / neighboring segments
     inter_seg_edges = find_segment_edges(univ, filtered_edges)
@@ -523,6 +538,7 @@ def find_segment_edges(univ, px_edges):
         if seg1 != seg2:
             s_edges.append(np.array([seg1, seg2]))
 
+    print "CKPT:", len(s_edges)
     # unique segment
     inter_seg_edges = misc.unique2d(np.asarray(s_edges))
 
@@ -531,7 +547,7 @@ def find_segment_edges(univ, px_edges):
 
 def merge_small_segments2(inter_seg_edges, seg_id_px_arr, min_size):
     """
-
+    merges segments with size less the min_size
     :param inter_seg_edges: list of inter segment edges
     :param seg_id_px_arr: segment to pixel mappings
     :param min_size: minimum size
@@ -546,7 +562,7 @@ def merge_small_segments2(inter_seg_edges, seg_id_px_arr, min_size):
 
     # Loop through all neighboring segments and
     # merge segments with size smaller than min_size
-    mask = np.zeros(len(seg_id_px_arr), dtype=bool)
+    mask = np.ones(len(seg_id_px_arr), dtype=bool)
 
     for i in range(0, len(inter_seg_edges)):
 
@@ -577,7 +593,7 @@ def merge_small_segments2(inter_seg_edges, seg_id_px_arr, min_size):
             # delete seg_b from seg_id_px_list, seg_size_arr
             # seg_id_px_arr = np.delete(seg_id_px_arr, seg_b_idx, 0)
             # seg_size_arr = np.delete(seg_size_arr, seg_b_idx, 0)
-            mask[seg_b_idx] = True
+            mask[seg_b_idx] = False
 
         elif (seg_a_sz < min_size <= seg_b_sz) or (seg_a_sz < min_size and seg_b_sz < min_size):
 
@@ -594,9 +610,9 @@ def merge_small_segments2(inter_seg_edges, seg_id_px_arr, min_size):
             # delete seg_a from seg_id_px_list, seg_size_arr
             # seg_id_px_arr = np.delete(seg_id_px_arr, seg_a_idx, 0)
             # seg_size_arr = np.delete(seg_size_arr, seg_a_idx, 0)
-            mask[seg_a_idx] = True
+            mask[seg_a_idx] = False
 
-    return seg_id_px_arr[~mask]
+    return seg_id_px_arr[mask]
 
 
 

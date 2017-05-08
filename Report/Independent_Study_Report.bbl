@@ -42,6 +42,11 @@ Nirmal Keshava, John Kerekes, Dimitris Manolakis, and Gary Shaw.
 \newblock An algorithm taxonomy for hyperspectral unmixing.
 \newblock 2000.
 
+\bibitem{keshava2002spectral}
+Nirmal Keshava and John~F Mustard.
+\newblock Spectral unmixing.
+\newblock {\em IEEE signal processing magazine}, 19(1):44--57, 2002.
+
 \bibitem{Miao2013}
 Zelang Miao, Wenzhong Shi, Hua Zhang, and Xinxin Wang.
 \newblock {Road Centerline Extraction From High-Resolution Imagery Based on

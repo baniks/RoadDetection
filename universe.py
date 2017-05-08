@@ -3,7 +3,7 @@
 
 
 class UniSegment:
-
+    """Segment unit"""
     def __init__(self, rank, size, id):
         self.rank = rank
         self.size = size
@@ -14,7 +14,7 @@ class UniSegment:
 
 
 class Universe:
-
+    """segmented graph"""
     def __init__(self, num_elements):
         self.segments = []
         self.num = num_elements
@@ -22,7 +22,7 @@ class Universe:
             self.segments.append(UniSegment(0, 1, i))
 
     def find(self, x):
-        # finds which component the vertex belongs to
+        # finds which component the vertex x belongs to
         y = x
         while y != self.segments[y].id:
             y = self.segments[y].id
@@ -31,7 +31,7 @@ class Universe:
         return y
 
     def join(self, x, y):
-        # Join x,y based on rank
+        # Join segments x, y based on rank
         if self.segments[x].rank > self.segments[y].rank:
             self.segments[y].id = x
             self.segments[x].size += self.segments[y].size
@@ -45,8 +45,10 @@ class Universe:
         self.num -= 1
 
     def get_size(self, x):
+        # get size of segment x
         e = self.segments[x]
         return e.get_size()
 
     def num_sets(self):
+        # get total number of segments
         return self.num

@@ -10,6 +10,16 @@ def unique2d(a):
 
 
 def dist_eu(im, x1, y1, x2, y2):
+    """
+    calculates eucledian distance between input pixels
+    :param im: input image
+    :param x1: pixel1 coordinate
+    :param y1: pixel1 coordinate
+    :param x2: pixel2 coordinate
+    :param y2: pixel2 coordinate
+    :return:
+    eucledian distance
+    """
     val = 0.0
 
     for d in range(0, im.shape[2]):
@@ -19,6 +29,16 @@ def dist_eu(im, x1, y1, x2, y2):
 
 
 def dist_sad(im,x1, y1, x2, y2):
+    """
+    calculates spectral angle distance between input pixels
+    :param im: input image
+    :param x1: pixel1 coordinate
+    :param y1: pixel1 coordinate
+    :param x2: pixel2 coordinate
+    :param y2: pixel2 coordinate
+    :return:
+    spectral angle distance
+    """
     numr = 0.0
     denom_1 = 0.0
     denom_2 = 0.0
@@ -35,6 +55,12 @@ def dist_sad(im,x1, y1, x2, y2):
 
 
 def remove_nan_inf(im):
+    """
+    replaces undefined channel values from input by mean of rest of the channels
+    :param im: input data
+    :return:
+    cleaned data
+    """
     cnt = 0
     for x in range(0, im.shape[0]):
         for y in range(0, im.shape[1]):

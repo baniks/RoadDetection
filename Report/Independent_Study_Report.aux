@@ -10,6 +10,10 @@
 \@writefile{lot}{\select@language{english}}
 \citation{thompson2010superpixel}
 \citation{ren2003learning}
+\citation{ren2003learning}
+\citation{gilmore2011superpixel}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}}
+\newlabel{sec:introduction}{{1}{2}}
 \citation{Poullis2010}
 \citation{Zhang2006}
 \citation{Poullis2010}
@@ -19,13 +23,11 @@
 \citation{Seppke2016}
 \citation{Miao2013}
 \citation{Cheng}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}}
-\newlabel{sec:introduction}{{1}{2}}
-\citation{shippert2003introduction}
-\citation{shippert2003introduction}
-\citation{shippert2003introduction}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}}
 \newlabel{sec:relatedwork}{{2}{3}}
+\citation{shippert2003introduction}
+\citation{shippert2003introduction}
+\citation{shippert2003introduction}
 \citation{smith2012}
 \citation{smith2012}
 \citation{baldridge2009aster}
@@ -38,7 +40,7 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Hyperspectral cube and a plot of reflectance spectrum of three pixels \cite  {shippert2003introduction}\relax }}{4}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:hyp_cube}{{1}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Reflectance spectra of different types of plants. Different plant components contribute to different portions of the spectra \cite  {smith2012} \relax }}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Reflectance spectra of different types of plants. \cite  {smith2012} \relax }}{5}}
 \newlabel{fig:plant_spec}{{2}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Spectral unmixing: linear mixing from a checkerboard mixture having a single reflection (left), non-linear mixing from an intimate mixture having multiple reflections (right) \cite  {keshava2000algorithm}\relax }}{5}}
 \newlabel{fig:unmix}{{3}{5}}
@@ -46,74 +48,96 @@
 \citation{okujeni2016berlinurbangradient}
 \citation{okujeni2016berlinurbangradient}
 \citation{okujeni2016berlinurbangradient}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Road Detection using Hyperspectral Image}{6}}
-\newlabel{sec:model}{{4}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Architecture\relax }}{6}}
-\newlabel{fig:arch}{{4}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Image Dataset}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Coverage of HyMap scenes in Berlin-Urban-Gradient dataset \cite  {okujeni2016berlinurbangradient}\relax }}{6}}
-\newlabel{fig:data}{{5}{6}}
-\citation{ren2003learning}
-\citation{gilmore2011superpixel}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Dataset}{6}}
+\newlabel{sec:dataset}{{4}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Coverage of HyMap scenes in Berlin-Urban-Gradient dataset \cite  {okujeni2016berlinurbangradient}\relax }}{6}}
+\newlabel{fig:data}{{4}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Road Detection using Hyperspectral Image}{7}}
+\newlabel{sec:model}{{5}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Architecture of the proposed road detection model using hyperspectral image\relax }}{7}}
+\newlabel{fig:arch}{{5}{7}}
 \citation{felzenszwalb2004efficient}
 \citation{felzenszwalb2004efficient}
 \citation{felzenszwalb2004efficient}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Superpixel Segmentation}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Segmentation algorithm of Felzenszwalb and Huttenlocher}{7}}
-\newlabel{sec:felz}{{4.2.1}{7}}
 \citation{felzenszwalb2004efficient}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Superpixel Over-Segmentation}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Segmentation algorithm of Felzenszwalb and Huttenlocher}{8}}
+\newlabel{sec:felz}{{5.1.1}{8}}
 \newlabel{alg:felz}{{1}{8}}
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Segmentation algorithm of Felzenszwalb and Huttenlocher \cite  {felzenszwalb2004efficient}\relax }}{8}}
 \newlabel{eq:int_diff}{{1}{8}}
-\newlabel{eq:mint}{{2}{8}}
-\newlabel{eq:euc}{{3}{8}}
+\newlabel{eq:mint}{{2}{9}}
+\newlabel{eq:euc}{{3}{9}}
+\newlabel{eq:sad}{{4}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Post-Processing (Phase 1)}{9}}
+\newlabel{sub sec:PP1}{{5.2}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Classification}{9}}
+\citation{keshava2002spectral}
+\citation{keshava2002spectral}
+\citation{keshava2002spectral}
+\citation{keshava2002spectral}
+\citation{keshava2002spectral}
+\citation{keshava2002spectral}
+\citation{keshava2002spectral}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Nearest Neighbor Classification}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Spectral Unmixing}{10}}
+\newlabel{eq:LMM}{{5}{10}}
+\newlabel{eq:un_abundance}{{6}{10}}
+\newlabel{eq:fa_abundance}{{7}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Post-processing (Phase 2)}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experimental Result}{11}}
+\newlabel{sec:experiment}{{6}{11}}
+\newlabel{fig:seg_in}{{6(a)}{11}}
+\newlabel{sub@fig:seg_in}{{(a)}{11}}
+\newlabel{fig:seg_op_EU}{{6(b)}{11}}
+\newlabel{sub@fig:seg_op_EU}{{(b)}{11}}
+\newlabel{fig:seg_op_SAD}{{6(c)}{11}}
+\newlabel{sub@fig:seg_op_SAD}{{(c)}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Segmentation output produced by the modified Felzenszwalb and Huttenlocher algorithm\relax }}{11}}
+\newlabel{fig:seg}{{6}{11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Input scene, a sub-region from HyMap02 scene (bands R=0.7$\mu m$, G=1.2 $\mu m$, B=0.6$\mu m$)}}}{11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Output for Euclidean distance metric, $k=100$ and $min\_size=10$}}}{11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { Output for SAD distance metric, $k=100$ and $min\_size=10$}}}{11}}
+\newlabel{fig:classify_nn_op}{{\caption@xref {fig:classify_nn_op}{ on input line 340}}{12}}
+\newlabel{fig:gt}{{7(a)}{12}}
+\newlabel{sub@fig:gt}{{(a)}{12}}
+\newlabel{fig:nn_road_op}{{7(b)}{12}}
+\newlabel{sub@fig:nn_road_op}{{(b)}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Nearest neighbor classifier output for test scene $1$\relax }}{12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Scene$1$, a rural sub-section from HyMap02 scene in infrared (bands R=1.0014$\mu m$, G=1.0166 $\mu m$, B=1.0318$\mu m$), with ground truth highroads marked in blue}}}{12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { Classified roads for distance metric SAD, $k=100$, $min\_size=10$ and $min\_size2=30$}}}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Ground truth from Berlin-Urban-Gradient dataset showing only the small roads in urban area\relax }}{12}}
+\newlabel{fig:gt_shpfile}{{8}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Recall precision graph for nearest neighbor classification of scene$1$ for distance metric SAD and EU, $k=[40,20,..140]$ and $min\_size=[5,10,15,20]$ \relax }}{13}}
+\newlabel{fig:rec_prec_sad}{{9}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Spectral unmixing result analysis\relax }}{13}}
+\newlabel{fig:unmix_sp1}{{10}{13}}
+\newlabel{fig:test_gt}{{11(a)}{14}}
+\newlabel{sub@fig:test_gt}{{(a)}{14}}
+\newlabel{fig:nn_test_op}{{11(b)}{14}}
+\newlabel{sub@fig:nn_test_op}{{(b)}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Nearest neighbor classifier output for test scene $2$\relax }}{14}}
+\newlabel{fig:nn_test}{{11}{14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Scene$2$, a semi-urban sub-section from HyMap02 scene in infrared (bands R=1.0014$\mu m$, G=1.0166 $\mu m$, B=1.0318$\mu m$), with ground truth highroads marked in blue}}}{14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { Classified roads for distance metric SAD, $k=100$, $min\_size=10$ and $min\_size2=30$}}}{14}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{14}}
+\newlabel{sec:concl}{{7}{14}}
 \bibstyle{plain}
 \bibdata{bib}
 \bibcite{okujeni2016berlinurbangradient}{1}
 \bibcite{baldridge2009aster}{2}
 \bibcite{Cheng}{3}
-\newlabel{eq:sad}{{4}{9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Classification of Superpixels}{9}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Result}{9}}
-\newlabel{sec:experiment}{{5}{9}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}}
-\newlabel{sec:concl}{{6}{9}}
 \bibcite{clark1993us}{4}
 \bibcite{felzenszwalb2004efficient}{5}
 \bibcite{gilmore2011superpixel}{6}
-\newlabel{fig:seg_in}{{6(a)}{10}}
-\newlabel{sub@fig:seg_in}{{(a)}{10}}
-\newlabel{fig:seg_op_EU}{{6(b)}{10}}
-\newlabel{sub@fig:seg_op_EU}{{(b)}{10}}
-\newlabel{fig:seg_op_SAD}{{6(c)}{10}}
-\newlabel{sub@fig:seg_op_SAD}{{(c)}{10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Segmentation output produced by the modified Felzenszwalb and Huttenlocher algorithm\relax }}{10}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Input scene, a sub-region from HyMap02 scene (bands R=833$\mu m$, G=1652 $\mu m$, B=632$\mu m$)}}}{10}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Output for Euclidean distance, $k=70$ and $min\_size=10$}}}{10}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { Output for SAD, $k=70$ and $min\_size=10$}}}{10}}
-\newlabel{fig:gt}{{7(a)}{10}}
-\newlabel{sub@fig:gt}{{(a)}{10}}
-\newlabel{fig:road_op}{{7(b)}{10}}
-\newlabel{sub@fig:road_op}{{(b)}{10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Classification result for approach 1, nearest neighbor mapping using SAD\relax }}{10}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Input scene, a sub-region from HyMap02 scene in infrared (bands R=1.0014$\mu m$, G=1.0166 $\mu m$, B=1.0318$\mu m$), with ground truth highroads marked in blue}}}{10}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { Classified roads for SAD, $k=70$ and $min\_size=10$}}}{10}}
 \bibcite{keshava2000algorithm}{7}
-\bibcite{Miao2013}{8}
-\bibcite{Poullis2010}{9}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Recall precision for $min\_size=10$, $k=[10,20,..140]$ \relax }}{11}}
-\newlabel{fig:rec_prec_sad}{{8}{11}}
-\newlabel{fig:gt}{{9(a)}{11}}
-\newlabel{sub@fig:gt}{{(a)}{11}}
-\newlabel{fig:road_op}{{9(b)}{11}}
-\newlabel{sub@fig:road_op}{{(b)}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Spectral unmixing result analysis\relax }}{11}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Sample false negative pixel spectra, misclassified as Tree 10 }}}{11}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { True Tree 10 pixel spectra }}}{11}}
-\bibcite{smith2012}{10}
-\bibcite{ren2003learning}{11}
-\bibcite{Seppke2016}{12}
-\bibcite{shippert2003introduction}{13}
-\bibcite{thompson2010superpixel}{14}
-\bibcite{Wegner2013}{15}
-\bibcite{Zhang2006}{16}
+\bibcite{keshava2002spectral}{8}
+\bibcite{Miao2013}{9}
+\bibcite{Poullis2010}{10}
+\bibcite{smith2012}{11}
+\bibcite{ren2003learning}{12}
+\bibcite{Seppke2016}{13}
+\bibcite{shippert2003introduction}{14}
+\bibcite{thompson2010superpixel}{15}
+\bibcite{Wegner2013}{16}
+\bibcite{Zhang2006}{17}

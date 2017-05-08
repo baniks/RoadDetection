@@ -29,7 +29,6 @@ numpy
 spectral #pip install spectral (http://www.spectralpython.net/installation.html)  
 skimage # pip install scikit-image (http://scikit-image.org/docs/dev/install.html)  
 cPickle # pip install cPickle (https://pypi.python.org/pypi/cpickle/0.1)  
-  
 # convert_shapefile_pavement_pixel: for converting shapefile polygon to pixel   
 ogr, gdal  
 

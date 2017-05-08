@@ -1,0 +1,11 @@
+*.pyc
+*.txt
+shapefile
+output_BKP
+data/*.dat
+data/hymap01_ds01.pkl
+data/hymap01_ds02.pkl
+data/hymap02_ds01.pkl
+data/hymap02_ds02.pkl
+data/hymap02_ds02_01.pkl
+

@@ -1,3 +1,9 @@
+#!/usr/bin/python
+#######################################################################
+#   File name: segment_spectra.py
+#   Author: Soubarna Banik
+#   Description: contains functions for segmentation and post-processing
+#######################################################################
 import numpy as np
 import misc
 import edge
@@ -97,11 +103,11 @@ def build_graph(run_flag, dist_flag, img, ds_name):
                         weights.append(w_sad)
                     num += 1
 
-        print "Graph constructed"
-        print "Num of segments before merging: ", num
+        # print "Graph constructed"
+        # print "Num of segments before merging: ", num
 
         # save the graph for faster run later
-        f = open("data/edges_%s_%s.dat" % (ds_name, dist_flag), 'w')
+        f = open("../data/edges_%s_%s.dat" % (ds_name, dist_flag), 'w')
         f.write("%d\n" % num)
         for e in edges:
             f.write("%d %d %f\n" % (e.a, e.b, e.w))
@@ -111,15 +117,15 @@ def build_graph(run_flag, dist_flag, img, ds_name):
 
         # For existing run, load the graph from disk
 
-        fr = open("data/edges_%s_%s.dat" % (ds_name, dist_flag), 'r')
+        fr = open("../data/edges_%s_%s.dat" % (ds_name, dist_flag), 'r')
         num = int(fr.readline().split()[0])
         for line in fr:
             words = line.split()
             e = edge.Edge(int(words[0]), int(words[1]), float(words[2]))
             edges.append(e)
         fr.close()
-        print "Graph loaded"
-        print "Number of segments before merging: ", num
+        # print "Graph loaded"
+        # print "Number of segments before merging: ", num
 
     return edges
 
@@ -363,7 +369,6 @@ def filter_shape(seg_id_px_arr, shp_score_list, label_list, thres1, thres2):
 
     # remove segment from seg_px_list
     # seg_id_px_arr = np.delete(seg_id_px_arr, idx_list, 0)
-    print cnt, "segments filtered based on shape scores."
     return seg_id_px_arr[mask]
 
 
@@ -456,7 +461,6 @@ def post_process2(univ, edges, candidate_seg_id_px_list, min_size):
 
     # filter road edges
     filtered_edges = filter_road_edge(edges, candidate_seg_id_px_list)
-    print "CKPT: # of filtered edges: ", len(filtered_edges)
 
     # find inter segment edges / neighboring segments
     inter_seg_edges = find_segment_edges(univ, filtered_edges)

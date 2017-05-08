@@ -1,5 +1,10 @@
-
-# disjoint-set forests using union-by-rank
+#!/usr/bin/python
+#######################################################################
+#   File name: prepare_data.py
+#   Author: Soubarna Banik
+#   Description: Adaptation of Felzenszwalb's segmentation algorithm.
+#                Contains classes for disjoint-set forests using union-by-rank
+#######################################################################
 
 
 class UniSegment:

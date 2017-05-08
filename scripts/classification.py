@@ -1,10 +1,16 @@
+#!/usr/bin/python
+#######################################################################
+#   File name: classification.py
+#   Author: Soubarna Banik
+#   Description: contains functions for classifications
+#######################################################################
+
 from spectral import *
 import numpy as np
 from skimage import io
-import universe
 
 
-spectral_library_path = "data/Hyperspectral data/Berlin Urban Gradient 2009 02 additional data/02_additional_data/spectral_library/SpecLib_Berlin_Urban_Gradient_2009.hdr"
+spectral_library_path = "../data/Hyperspectral data/Berlin Urban Gradient 2009 02 additional data/02_additional_data/spectral_library/SpecLib_Berlin_Urban_Gradient_2009.hdr"
 
 
 def classify_nn(in_spectra):
@@ -63,7 +69,7 @@ def calc_precision_recall(road_seg_id_px_list, ds_name):
     """
 
     # Load GT (infrared image, roads marked with blue manually)
-    gt = io.imread("data/%s_infra_GT_highroads.jpg" % ds_name)
+    gt = io.imread("../data/%s_infra_GT_highroads.jpg" % ds_name)
 
     # Find pixels mapped as road (marked in blue) from ground truth image
     blue = np.array([0, 0, 254])

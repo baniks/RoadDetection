@@ -1,3 +1,10 @@
+#!/usr/bin/python
+#######################################################################
+#   File name: extra.py
+#   Author: Soubarna Banik
+#   Description: contains few extra functions - some not in use any more
+#######################################################################
+
 from skimage.segmentation import mark_boundaries
 import numpy as np
 import segment_spectra as sb_spec
@@ -15,7 +22,7 @@ def draw_contour(u, im, k, dist_flag):
     :return:
     contoured image
     """
-    rgb_im = io.imread("images/hymap02/ds02/hymap02_ds02_sub_img_27_74_13.jpg")
+    rgb_im = io.imread("../images/hymap02/ds02/hymap02_ds02_sub_img_27_74_13.jpg")
     width = rgb_im.shape[0]
     height = rgb_im.shape[1]
     # r = im[:, :, 27].reshape(width, height, 1)

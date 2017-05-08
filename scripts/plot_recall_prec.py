@@ -1,7 +1,15 @@
+#!/usr/bin/python
+#######################################################################
+#   File name: plot_recall_prec.py
+#   Author: Soubarna Banik
+#   Description: ad-hoc script for generating recall precision graph
+#                from the output
+#######################################################################
+
 import numpy as np
 import matplotlib.pyplot as plt
 
-output_dir = "output/shell output/perim_area/ds02"
+output_dir = "../output/ds02"
 
 min_size = 5
 recalls_5 = [float(line.rstrip('\n')) for line in open("%s/min_size_5/recall_%s.txt" % (output_dir, min_size),'r')]
@@ -36,8 +44,8 @@ plt.plot(recalls_20,precisions_20, marker='o',linewidth=3.0, linestyle='--', col
 plt.plot(eu_recalls_10,eu_precisions_10, marker='s',linewidth=3.0, linestyle='--', color='c', label='EU, min_size=10')
 plt.plot(eu_recalls_20,eu_precisions_20, marker='s',linewidth=3.0, linestyle='--', color='k', label='EU, min_size=20')
 
-plt.xlabel('Recall',fontsize=18)
-plt.ylabel('Precision',fontsize=18)
+plt.xlabel('Recall', fontsize=18)
+plt.ylabel('Precision', fontsize=18)
 plt.legend()
 leg = plt.gca().get_legend()
 ltext  = leg.get_texts()  

@@ -1,3 +1,10 @@
+#!/bin/bash
+#######################################################################
+#   File name: train_parameters.sh
+#   Author: Soubarna Banik
+#   Description: invokes main.py for series of parameters
+#######################################################################
+
 min_size=10
 case_id=1
 ds_name="hymap02_ds02"

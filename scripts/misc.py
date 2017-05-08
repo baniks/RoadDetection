@@ -1,3 +1,10 @@
+#!/usr/bin/python
+#######################################################################
+#   File name: misc.py
+#   Author: Soubarna Banik
+#   Description: contains miscellaneous functions
+#######################################################################
+
 import numpy as np
 import math
 

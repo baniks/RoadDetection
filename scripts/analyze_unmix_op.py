@@ -1,12 +1,17 @@
+#!/usr/bin/python
+#######################################################################
+#   File name: analyze_unmix_op.py
+#   Author: Soubarna Banik
+#   Description: ad-hoc script for analysing spectral unmixing output
+#######################################################################
+
 from spectral import *
 import numpy as np
 import cv2
 import cPickle
 import segment_spectra as sb_spec
 import classification as sb_lib
-import misc
 import matplotlib.pyplot as plt
-import extra
 
 
 def calc_precision_recall(road_seg_id_px_list, abundance, classified_labels, seg_id_px_arr, ds_name):
@@ -19,22 +24,28 @@ def calc_precision_recall(road_seg_id_px_list, abundance, classified_labels, seg
     recall: calculated recall value
     """
     # Load GT (infrared image, roads marked with blue manually)
-    gt = cv2.imread("data/%s_infra_GT_highroads.jpg" % ds_name)
+    gt = cv2.imread("../data/%s_infra_GT_highroads.jpg" % ds_name)
+
     # Find pixels mapped as road (marked in blue) from ground truth image
     blue = np.array([254, 0, 0])
     gt_road_pxs_lst = []
     w = gt.shape[0]
     h = gt.shape[1]
+
     for x in range(0, w):
         for y in range(0, h):
             if np.array_equal(gt[x, y], blue):
                 # gt_road_pxs_lst.append(np.array([x, y]))
                 gt_road_pxs_lst.append(y * w + x)
+
     gt_road_pxs = np.asarray(gt_road_pxs_lst)
+
     # classified road pixels
     road_pxs_lst = []
+
     for i in range(0, len(road_seg_id_px_list)):
         road_pxs_lst += road_seg_id_px_list[i][1]
+
     road_pxs = np.asarray(road_pxs_lst)
     precision = 0.0
     recall = 0.0
@@ -42,6 +53,7 @@ def calc_precision_recall(road_seg_id_px_list, abundance, classified_labels, seg
     fp = 0
     fn = 0
     fn_set = []
+
     if len(road_seg_id_px_list) > 0:
         tp = len(np.intersect1d(gt_road_pxs, road_pxs))
         fp = len(np.setdiff1d(road_pxs, gt_road_pxs))
@@ -49,22 +61,29 @@ def calc_precision_recall(road_seg_id_px_list, abundance, classified_labels, seg
         fn_set = np.setdiff1d(gt_road_pxs, road_pxs)
         precision = tp/(float(tp) + fp)
         recall = tp / (float(tp) + fn)
+
     print "tp, fp, fn: ", tp, fp, fn
+
     cnt=0
     labels_level2=[]
     labels1_level_spectra=[]
+
     for fn_px in fn_set:
-        #find segment id of the pixel
+        # find segment id of the pixel
         # seg_index= seg_id_px_arr[:,0].index(univ.find(fn_px)) #segid_list_u.index(u.find(fn_px))
         seg_index = np.where(seg_id_px_arr[:,0]==univ.find(fn_px))[0][0] 
-        #find label for the segment id
+
+        # find label for the segment id
         labels_level2.append(classified_labels[seg_index])
-        #find abundance vector of the segment
+
+        # find abundance vector of the segment
         ab = abundance[:,seg_index]
         labels1_level_spectra.append(np.argmax(ab))
-        #find count of segment mapped to spectra 57        
+
+        # find count of segment mapped to spectra 57
         if np.argmax(ab) == 57:
             cnt+=1
+
     return precision, recall, road_pxs, labels_level2, labels1_level_spectra
 
 
@@ -79,8 +98,8 @@ sigma = 0.25
 c = 100
 min_size = 10
 ds_name = "hymap02_ds02"
-input_dir = "/home/soubarna/Documents/Independent Study/Hyperspectral data/Berlin Urban Gradient 2009 01 image products/01_image_products/HyMap02_Berlin_Urban_Gradient_2009.hdr"
-output_dir = "output/shell output/perim_area/ds02"
+input_dir = "../data/Hyperspectral data/Berlin Urban Gradient 2009 01 image products/01_image_products/HyMap02_Berlin_Urban_Gradient_2009.hdr"
+output_dir = "../output/shell output/perim_area/ds02"
 
 print "Parameters:"
 print "c: ", c
@@ -93,16 +112,16 @@ print "Distance metric: ", dist_flag
 # img = open_image(input_dir)
 
 # Load image subset
-img = cPickle.load(open("data/%s.pkl" % ds_name, "rb"))
+img = cPickle.load(open("../data/%s.pkl" % ds_name, "rb"))
+
+# Load spectral library
+lib = open_image("../data/Hyperspectral data/Berlin Urban Gradient 2009 02 additional data/02_additional_data/spectral_library/SpecLib_Berlin_Urban_Gradient_2009.hdr")
+spectra_lib = lib.spectra
 
 print "Image dimension:", img.shape
 print "Data loaded"
 
 # -------------------------------- Pre - processing -------------------------------- #
-
-# Data cleaning
-# img = misc.remove_nan_inf(img)
-# print "Data cleaning: removed nan/inf.."
 
 # Smooth channels
 sm_img = cv2.GaussianBlur(img, (3, 3), sigma)
@@ -129,22 +148,11 @@ print "Checkpoint : build graph ended."
 univ = sb_spec.segment_graph(width*height, edges, c)
 print "Checkpoint : segment graph ended."
 
-# STEP 2: save_rgb
-# contoured_img = extra.draw_contour(univ, sm_img, c, dist_flag)
-# save_rgb('%s/step1_segmented.jpg' % output_dir, contoured_img, [1, 0, 2])
-
 # STEP3: Post-processing segments/superpixels
 # detect small components as the roads are very narrow. K and min_size controls the overall size
 # and hence large k and min_size won't detect the thin line segments.
 seg_id_px_arr = sb_spec.post_process(univ, edges, min_size, height, width)
 print "Checkpoint : post-process 1 ended."
-
-# segmented_img = sb_spec.color_segments(seg_id_px_arr[:, 1], width, height)
-# cv2.imwrite("%s/segmented_image_c_%s_sz_%s.jpg" % (output_dir, c, min_size), segmented_img)
-
-# STEP 3: save_rgb
-# contoured_img = extra.draw_contour(univ, sm_img, c, dist_flag)
-# save_rgb('%s/step2_pp1.jpg' % output_dir, contoured_img, [1, 0, 2])
 
 # STEP4: Calculate mean spectra of the segments/superpixels
 seg_mean_spectra = sb_spec.get_mean_spectra(seg_id_px_arr, sm_img)
@@ -154,7 +162,6 @@ print "Checkpoint : mean spectra ended."
 
 # --------------------------------Classification-------------------------------- #
 # STEP5: Classify by nearest neighbor from the spectral library
-# classified_labels = sb_lib.classify_nn(seg_mean_spectra)
 abundance = sb_lib.unmix_spectra(seg_mean_spectra)
 classified_labels = sb_lib.classify_spectra_unmix(seg_mean_spectra)
 print "Checkpoint : classification ended."
@@ -164,18 +171,6 @@ candidate_seg_id_px_arr = [seg_id_px_arr[i] for i, elem in enumerate(classified_
 candidate_seg_id_px_arr = np.asarray(candidate_seg_id_px_arr)
 print "# of segments labelled as road: ", len(candidate_seg_id_px_arr)
 print "Checkpoint : filter by road label ended."
-
-# STEP 6: post process 2
-# small k and min_size forces to detect small segments -> with low shape feature value.
-# merge the connected segments that are small. then calculate shape feature value and filter shape
-# merged_candidate_seg_id_px_arr = sb_spec.post_process2(univ, edges, candidate_seg_id_px_arr, 30)
-# merged_candidate_seg_id_px_arr = candidate_seg_id_px_arr
-# merged_candidate_seg_id_px_arr = merged_candidate_seg_id_px_arr[np.argsort(merged_candidate_seg_id_px_arr[:, 0])]
-# print "Checkpoint : post-process 2 ended."
-
-
-# color_merged_segs = sb_spec.color_segments(merged_candidate_seg_id_px_arr[:, 1], width, height)
-# cv2.imwrite("output/shell output/LFI/post_process2_op_0.png", color_merged_segs)
 
 # STEP7: Compare with ground truth
 precision_lst = []
@@ -219,6 +214,23 @@ fig = plt.figure()
 fig.hold(1)
 ax = fig.add_subplot(111)
 ax.set_xlim(0.40,2.5)
+wv = np.array([0.455400, 0.469400, 0.484300, 0.499100, 0.513800, 0.528800, 0.543600,
+ 0.558400, 0.573100, 0.588100, 0.602900, 0.617600, 0.632000, 0.646500,
+ 0.660900, 0.675500, 0.690000, 0.704500, 0.718900, 0.733200, 0.747600,
+ 0.761800, 0.775900, 0.790100, 0.804600, 0.818800, 0.832900, 0.847100,
+ 0.861100, 0.874700, 0.887800, 0.893000, 0.908500, 0.923900, 0.939400,
+ 0.955200, 0.970400, 0.985800, 1.001400, 1.016600, 1.031800, 1.046900,
+ 1.062000, 1.076600, 1.091300, 1.106200, 1.120800, 1.135300, 1.149700,
+ 1.164100, 1.178600, 1.192800, 1.206900, 1.221000, 1.235100, 1.249200,
+ 1.263100, 1.277000, 1.290700, 1.304300, 1.318300, 1.330100, 1.505000,
+ 1.518800, 1.532600, 1.546300, 1.559800, 1.573200, 1.586400, 1.599500,
+ 1.612700, 1.625900, 1.638900, 1.651700, 1.664400, 1.677100, 1.689600,
+ 1.702100, 1.714600, 1.726900, 1.739300, 1.751500, 1.763600, 1.775600,
+ 1.787600, 1.798100, 2.027500, 2.046700, 2.065500, 2.084100, 2.102500,
+ 2.120900, 2.139000, 2.157000, 2.174700, 2.191700, 2.210300, 2.228100,
+ 2.245600, 2.263400, 2.280400, 2.297400, 2.314400, 2.331400, 2.348300,
+ 2.365000, 2.381500, 2.397700, 2.414100, 2.430300, 2.446500])
+
 plt_px,=ax.plot(wv,px,'r--',linewidth=3.0,label='Pixel (70,28)')
 plt_tree_px,=ax.plot(wv,tree_px,'b--',linewidth=3.0,label='Pixel (267,376)')
 plt_c1,=ax.plot(wv,spectra_lib[23],'#CC0000',linewidth=3.0,label='Ashphalt1')
@@ -244,8 +256,8 @@ plt.show()
 op_img = np.zeros((width, height, 3), int)
 red = np.array([0, 0, 255])
 road_pxs_lst = []
-for i in range(0, len(road_seg_id_px_arr)):
-        road_pxs_lst += road_seg_id_px_arr[i][1]
+for i in range(0, len(candidate_seg_id_px_arr)):
+        road_pxs_lst += candidate_seg_id_px_arr[i][1]
 road_pxs = np.asarray(road_pxs_lst)
 
 for px in road_pxs:
@@ -266,7 +278,6 @@ prec_file.close()
 
 for x in range(196,300):
     seg_index = np.where(seg_id_px_arr[:,0]==univ.find(376*width+x))[0][0] 
-    #seg_id=segid_list_u.index(u.find(376*width+x))
     ab = abundance[:,seg_index]
     if np.argmax(ab) == 57:
         print x

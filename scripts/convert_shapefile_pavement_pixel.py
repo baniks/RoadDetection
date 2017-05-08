@@ -1,7 +1,12 @@
+#!/usr/bin/python
+#######################################################################
+#   File name: convert_shapefile_pavement_pixel.py
+#   Author: Soubarna Banik
+#   Description: script for rasterization/ mapping shapefile polygon to pixels
+#######################################################################
+
 from osgeo import ogr
 from osgeo import gdal
-import os
-import sys
 import numpy as np
 
 file_name = 'data/Hyperspectral data/Berlin Urban Gradient 2009 02 additional data/02_additional_data/land_cover/LandCov_Vec_Berlin_Urban_Gradient_2009_Pavement.shp'
@@ -10,7 +15,7 @@ raster_fn = 'data/Hyperspectral data/Berlin Urban Gradient 2009 02 additional da
 
 pixel_size = 3
 NoData_value = 255
-maskvalue =1
+maskvalue = 1
 
 driver = ogr.GetDriverByName('ESRI Shapefile')
 ds = driver.Open(file_name, 0) # 0 means read-only. 1 means writeable.

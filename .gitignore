@@ -8,4 +8,7 @@ data/hymap01_ds02.pkl
 data/hymap02_ds01.pkl
 data/hymap02_ds02.pkl
 data/hymap02_ds02_01.pkl
+output/ds0*/*.jpg
+output/ds0*/*.png
+output/ds0*/*.txt
 

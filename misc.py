@@ -3,6 +3,11 @@ import math
 
 
 def unique2d(a):
+    """
+    returns unique 2d set of elements
+    :param a: list of 2d elements
+    :return:
+    """
     x, y = a.T
     b = x + y*1.0j
     idx = np.unique(b, return_index=True)[1]

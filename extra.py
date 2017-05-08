@@ -29,7 +29,7 @@ def draw_contour(u, im, k, dist_flag):
             label_im[x, y] = u.find(y * width + x)
     print "label_im unique value:", len(np.unique(label_im))
     contoured_im = mark_boundaries(rgb_im, label_im, color=(0, 0, 255), mode='subpixel')
-    # title = "%s segmented image %s" % (dist_flag, c)
+    # title = "%s segmented image %s" % (dist_flag, k)
     # cv2.imshow(title, contoured_im)
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
@@ -100,11 +100,11 @@ def color_segmented_image(u, width, height, c, cat):
     return output
 
 
-def threshold_elong(size, c, u, in_comp, height, width):
+def threshold_elong(size, k, u, in_comp, height, width):
     """
-    calculates threshold value for elongated segments
+    calculates threshold for elongated shape
     :param size:
-    :param c:
+    :param k:
     :param u:
     :param in_comp:
     :param height:
@@ -124,7 +124,7 @@ def threshold_elong(size, c, u, in_comp, height, width):
     properties = measure.regionprops(im)
     wt = (properties[0].perimeter/properties[0].area)
     # thres=average of c/size and peri/area
-    thresh = (float(c)/size + wt)/2
+    thresh = (float(k)/size + wt)/2
 
     return thresh
 

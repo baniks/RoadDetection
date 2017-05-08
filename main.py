@@ -12,18 +12,18 @@ import extra
 run_flag = 'N'  # for existing run : E, for new run: N
 dist_flag = 'SAD'  # SAD: SAD distance metric, EU: euclidean distance metric
 sigma = 0.25
-# c = int(sys.argv[1])
+# k = int(sys.argv[1])
 # min_size = int(sys.argv[2])
 # ds_name = str(sys.argv[3])
 
-c = 100
-min_size = 20
+k = 100
+min_size = 10
 min_size2 = 30
 ds_name = "hymap02_ds02_sub_img1"
 output_dir = "output/ds02"
 
 print "Parameters:"
-print "c: ", c
+print "k: ", k
 print "Min_size: ", min_size
 print "Distance metric: ", dist_flag
 
@@ -66,11 +66,11 @@ edges = sb_spec.build_graph(run_flag, dist_flag, sm_img, ds_name)
 print "Checkpoint : build graph ended."
 
 # STEP2: Segment graph/Generate superpixels
-univ = sb_spec.segment_graph(width*height, edges, c)
+univ = sb_spec.segment_graph(width*height, edges, k)
 print "Checkpoint : segment graph ended."
 
 # STEP 2: save_rgb
-# contoured_img = extra.draw_contour(univ, sm_img, c, dist_flag)
+# contoured_img = extra.draw_contour(univ, sm_img, k, dist_flag)
 # save_rgb('%s/step1_segmented.jpg' % output_dir, contoured_img, [1, 0, 2])
 
 # STEP3: Post-processing segments/superpixels
@@ -80,10 +80,10 @@ seg_id_px_arr = sb_spec.post_process(univ, edges, min_size, height, width)
 print "Checkpoint : post-process 1 ended."
 
 segmented_img = sb_spec.color_segments(seg_id_px_arr[:, 1], width, height)
-cv2.imwrite("%s/segmented_image_c_%s_sz_%s.jpg" % (output_dir, c, min_size), segmented_img)
+cv2.imwrite("%s/segmented_image_c_%s_sz_%s.jpg" % (output_dir, k, min_size), segmented_img)
 
 # STEP 3: save_rgb
-# contoured_img = extra.draw_contour(univ, sm_img, c, dist_flag)
+# contoured_img = extra.draw_contour(univ, sm_img, k, dist_flag)
 # save_rgb('%s/step2_pp1.jpg' % output_dir, contoured_img, [1, 0, 2])
 
 # STEP4: Calculate mean spectra of the segments/superpixels
@@ -127,7 +127,7 @@ hist, bins = np.histogram(shp_score_list, 10)
 w = 0.7 * (bins[1] - bins[0])
 center = (bins[:-1] + bins[1:]) / 2
 plt.bar(center, hist, align='center', width=w)
-plt.savefig("%s/shape_score_hist_%s_%s" % (output_dir, c, min_size))
+plt.savefig("%s/shape_score_hist_%s_%s" % (output_dir, k, min_size))
 
 # Test LFI
 classified_img = np.zeros([width, height, 3], int)
@@ -166,8 +166,8 @@ for idx in range(len(shp_score_list) - 1, -1, -1):
         shp_score_img[x, y] = col
         classified_img[x, y] = red
 
-cv2.imwrite("%s/step3_classified_img_%s_%s_PP_%s.jpg" % (output_dir, c, min_size, min_size2), classified_img)
-cv2.imwrite("%s/step4_score_colors_%s_%s_PP_%s.jpg" % (output_dir, c, min_size, min_size2), shp_score_img)
+cv2.imwrite("%s/step3_classified_img_%s_%s_PP_%s.jpg" % (output_dir, k, min_size, min_size2), classified_img)
+cv2.imwrite("%s/step4_score_colors_%s_%s_PP_%s.jpg" % (output_dir, k, min_size, min_size2), shp_score_img)
 
 # STEP8: Final filtering based on shape
 road_seg_id_px_arr = sb_spec.filter_shape(merged_candidate_seg_id_px_arr, shp_score_list, label_list, 0, 0.6)
@@ -193,7 +193,7 @@ road_pxs = np.asarray(road_pxs_lst)
 for px in road_pxs:
     op_img[px % width, px / width] = red
 
-cv2.imwrite("%s/step5_road_op_%s_SAD_%s_%s_PP2_%s.jpg" % (output_dir, ds_name, c, min_size, min_size2), op_img)
+cv2.imwrite("%s/step5_road_op_%s_SAD_%s_%s_PP2_%s.jpg" % (output_dir, ds_name, k, min_size, min_size2), op_img)
 
 # saving output
 recall_file = open("%s/recall_%s.txt" % (output_dir, min_size), 'a')

@@ -124,16 +124,16 @@ def build_graph(run_flag, dist_flag, img, ds_name):
     return edges
 
 
-def threshold(size, c):
-    return c/size
+def threshold(size, k):
+    return k/size
 
 
-def segment_graph(num_vertices, edges, c):
+def segment_graph(num_vertices, edges, k):
     """
     felzenswalb segmenation algo
     :param num_vertices: number of vertices
     :param edges: graph/ list of edges
-    :param c: threshold parameter
+    :param k: threshold parameter
     :return:
     univ: segmented graph
     """
@@ -147,7 +147,7 @@ def segment_graph(num_vertices, edges, c):
     # init thresholds
     thres = []
     for i in range(0, num_vertices):
-        thres.append(threshold(1, c))
+        thres.append(threshold(1, k))
 
     # for each edge, in non-decreasing weight order...
     joined = 0
@@ -164,7 +164,7 @@ def segment_graph(num_vertices, edges, c):
                 joined += 1
                 u.join(a, b)
                 a = u.find(a)
-                thres[a] = pedge.w + threshold(u.get_size(a), c)
+                thres[a] = pedge.w + threshold(u.get_size(a), k)
                 # Int(a) = max weight in a. As edge is sorted, pedge.w = max weight belonging to the comp a
 
     return u

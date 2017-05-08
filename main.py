@@ -1,15 +1,15 @@
 from spectral import *
 import numpy as np
-import cv2
 import cPickle
 import segment_spectra as sb_spec
 import classification as sb_lib
 import misc
 import matplotlib.pyplot as plt
+from scipy.ndimage import gaussian_filter
 import extra
 
 # Parameter settings
-run_flag = 'N'  # for existing run : E, for new run: N
+run_flag = 'E'  # for existing run : E, for new run: N
 dist_flag = 'SAD'  # SAD: SAD distance metric, EU: euclidean distance metric
 sigma = 0.25
 # k = int(sys.argv[1])
@@ -45,7 +45,7 @@ print "Data loaded"
 # print "Data cleaning: removed nan/inf.."
 
 # Smooth channels
-sm_img = cv2.GaussianBlur(img, (3, 3), sigma)
+sm_img = gaussian_filter(img, sigma)
 print "Channels smoothed"
 
 # final check data for nan/inf
@@ -80,7 +80,7 @@ seg_id_px_arr = sb_spec.post_process(univ, edges, min_size, height, width)
 print "Checkpoint : post-process 1 ended."
 
 segmented_img = sb_spec.color_segments(seg_id_px_arr[:, 1], width, height)
-cv2.imwrite("%s/segmented_image_c_%s_sz_%s.jpg" % (output_dir, k, min_size), segmented_img)
+save_rgb("%s/segmented_image_c_%s_sz_%s.jpg" % (output_dir, k, min_size), segmented_img, [0, 1, 2,])
 
 # STEP 3: save_rgb
 # contoured_img = extra.draw_contour(univ, sm_img, k, dist_flag)
@@ -108,13 +108,8 @@ print "Checkpoint : filter by road label ended."
 # small k and min_size forces to detect small segments -> with low shape feature value.
 # merge the connected segments that are small. then calculate shape feature value and filter shape
 merged_candidate_seg_id_px_arr = sb_spec.post_process2(univ, edges, candidate_seg_id_px_arr, min_size2)
-# COMMENT LINE ABOVE AND UNCOMMENT LINE BELOW FOR UNMIXING
-# merged_candidate_seg_id_px_arr = candidate_seg_id_px_arr
 merged_candidate_seg_id_px_arr = merged_candidate_seg_id_px_arr[np.argsort(merged_candidate_seg_id_px_arr[:, 0])]
 print "Checkpoint : post-process 2 ended."
-
-# color_merged_segs = sb_spec.color_segments(merged_candidate_seg_id_px_arr[:, 1], width, height)
-# cv2.imwrite("output/shell output/LFI/post_process2_op_0.png", color_merged_segs)
 
 # STEP 7: calculate LFI of segments
 # lfi_list = sb_spec.get_lfi(merged_candidate_seg_id_px_arr, height, width)
@@ -131,32 +126,32 @@ plt.savefig("%s/shape_score_hist_%s_%s" % (output_dir, k, min_size))
 
 # Test LFI
 classified_img = np.zeros([width, height, 3], int)
-red = np.array([0, 0, 255])
+red = np.array([255, 0, 0])
 
 shp_score_img = np.zeros([width, height, 3], int)
 col = np.empty([3], int)
 for idx in range(len(shp_score_list) - 1, -1, -1):
     px_list = merged_candidate_seg_id_px_arr[idx][1]
     if 0 <= shp_score_list[idx] < 0.10:
-        col = np.array([143, 143, 188]) # rose
+        col = np.array([188, 143, 143]) # rose
     elif 0.10 <= shp_score_list[idx] < 0.20:
         col = np.array([255, 0, 255]) # magenta
     elif 0.20 <= shp_score_list[idx] < 0.30:
-        col = np.array([0, 69, 255])  # orange
+        col = np.array([255, 69, 0])  # orange
     elif 0.30 <= shp_score_list[idx] < 0.40:
-        col = np.array([255, 255, 0])   # cyan
+        col = np.array([0, 255, 255])   # cyan
     elif 0.40 <= shp_score_list[idx] < 0.50:
         col = np.array([0, 255, 0]) # lime
     elif 0.50 <= shp_score_list[idx] < 0.60:
-        col = np.array([0, 0, 255])   # red
+        col = np.array([255, 0, 0])   # red
     elif 0.6 <= shp_score_list[idx] < 0.70:
-        col = np.array([255, 0, 0])  # blue
+        col = np.array([0, 0, 255])  # blue
     elif 0.7 <= shp_score_list[idx] < 0.8:
         col = np.array([0, 128, 0])   # green
     elif 0.8 <= shp_score_list[idx] < 0.9:
         col = np.array([128, 0, 128])   # purple
     elif 0.9 <= shp_score_list[idx] < 1.0:
-        col = np.array([0, 255, 255])  # chocolate
+        col = np.array([255, 255, 0])  # chocolate
     elif shp_score_list[idx] >= 1.0:
         col = np.array([255, 255, 255])  # white
 
@@ -166,25 +161,17 @@ for idx in range(len(shp_score_list) - 1, -1, -1):
         shp_score_img[x, y] = col
         classified_img[x, y] = red
 
-cv2.imwrite("%s/step3_classified_img_%s_%s_PP_%s.jpg" % (output_dir, k, min_size, min_size2), classified_img)
-cv2.imwrite("%s/step4_score_colors_%s_%s_PP_%s.jpg" % (output_dir, k, min_size, min_size2), shp_score_img)
+save_rgb("%s/step3_classified_img_%s_%s_PP_%s.jpg" % (output_dir, k, min_size, min_size2), classified_img, [0, 1, 2,])
+save_rgb("%s/step4_score_colors_%s_%s_PP_%s.jpg" % (output_dir, k, min_size, min_size2), shp_score_img, [0, 1, 2,])
 
 # STEP8: Final filtering based on shape
 road_seg_id_px_arr = sb_spec.filter_shape(merged_candidate_seg_id_px_arr, shp_score_list, label_list, 0, 0.6)
 print "# of road segments after shape filtering: ", len(road_seg_id_px_arr)
 print "Checkpoint : filter by shape ended."
 
-# STEP7: Compare with ground truth
-precision_lst = []
-recall_lst = []
-precision, recall, road_pxs = sb_lib.calc_precision_recall(road_seg_id_px_arr, ds_name)
-
-print "Precision: ", precision
-print "Recall: ", recall
-
-# STEP8: Save classified road as output image
+# STEP7: Save classified road as output image
 op_img = np.zeros((width, height, 3), int)
-red = np.array([0, 0, 255])
+red = np.array([255, 0, 0])
 road_pxs_lst = []
 for i in range(0, len(road_seg_id_px_arr)):
         road_pxs_lst += road_seg_id_px_arr[i][1]
@@ -193,7 +180,15 @@ road_pxs = np.asarray(road_pxs_lst)
 for px in road_pxs:
     op_img[px % width, px / width] = red
 
-cv2.imwrite("%s/step5_road_op_%s_SAD_%s_%s_PP2_%s.jpg" % (output_dir, ds_name, k, min_size, min_size2), op_img)
+save_rgb("%s/Road_Final_Output_%s_SAD_%s_%s_PP2_%s.jpg" % (output_dir, ds_name, k, min_size, min_size2), op_img, [0, 1, 2,])
+
+# STEP8: Compare with ground truth
+precision_lst = []
+recall_lst = []
+precision, recall = sb_lib.calc_precision_recall(road_seg_id_px_arr, ds_name)
+
+print "Precision: ", precision
+print "Recall: ", recall
 
 # saving output
 recall_file = open("%s/recall_%s.txt" % (output_dir, min_size), 'a')

@@ -1,6 +1,6 @@
 from spectral import *
 import numpy as np
-import cv2
+from skimage import io
 import universe
 
 
@@ -63,10 +63,10 @@ def calc_precision_recall(road_seg_id_px_list, ds_name):
     """
 
     # Load GT (infrared image, roads marked with blue manually)
-    gt = cv2.imread("data/%s_infra_GT_highroads.jpg" % ds_name)
+    gt = io.imread("data/%s_infra_GT_highroads.jpg" % ds_name)
 
     # Find pixels mapped as road (marked in blue) from ground truth image
-    blue = np.array([254, 0, 0])
+    blue = np.array([0, 0, 254])
     gt_road_pxs_lst = []
     width = gt.shape[0]
     height = gt.shape[1]
@@ -92,9 +92,6 @@ def calc_precision_recall(road_seg_id_px_list, ds_name):
     fn = 0
 
     if len(road_seg_id_px_list) > 0:
-        # tp = len(multidim_intersect(gt_road_pxs, road_pxs))
-        # fp = len(multidim_difference(road_pxs, gt_road_pxs))
-        # fn = len(multidim_difference(gt_road_pxs, road_pxs))
         tp = len(np.intersect1d(gt_road_pxs, road_pxs))
         fp = len(np.setdiff1d(road_pxs, gt_road_pxs))
         fn = len(np.setdiff1d(gt_road_pxs, road_pxs))
@@ -103,7 +100,7 @@ def calc_precision_recall(road_seg_id_px_list, ds_name):
 
     print "tp, fp, fn: ", tp, fp, fn
 
-    return precision, recall, road_pxs
+    return precision, recall
 
 
 def unmix_spectra(in_spectra):

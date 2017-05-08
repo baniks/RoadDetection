@@ -394,11 +394,6 @@ def post_process(univ, edges, min_size, height, width):
         seg_id_px_arr[i][0] = segid_uniq_list[i]
         seg_id_px_arr[i][1] = seg_px_list[i]
 
-    # Visualizing segments
-
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-
     return seg_id_px_arr
 
 
@@ -465,6 +460,10 @@ def post_process2(univ, edges, candidate_seg_id_px_list, min_size):
 
     # find inter segment edges / neighboring segments
     inter_seg_edges = find_segment_edges(univ, filtered_edges)
+
+    if len(inter_seg_edges) == 0:
+        "PP2| no segment edges found. Skipping merging segments.."
+        return candidate_seg_id_px_list
 
     # merge small neighboring segments
     merged_seg_id_px_list = merge_small_segments2(inter_seg_edges, candidate_seg_id_px_list, min_size)
@@ -538,7 +537,9 @@ def find_segment_edges(univ, px_edges):
         if seg1 != seg2:
             s_edges.append(np.array([seg1, seg2]))
 
-    print "CKPT:", len(s_edges)
+    if len(s_edges) == 0:
+        return s_edges
+
     # unique segment
     inter_seg_edges = misc.unique2d(np.asarray(s_edges))
 

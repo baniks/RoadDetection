@@ -1,8 +1,8 @@
 from skimage.segmentation import mark_boundaries
-import cv2
 import numpy as np
 import segment_spectra as sb_spec
 from skimage import measure
+from skimage import io
 
 
 def draw_contour(u, im, k, dist_flag):
@@ -15,7 +15,7 @@ def draw_contour(u, im, k, dist_flag):
     :return:
     contoured image
     """
-    rgb_im = cv2.imread("images/hymap02/ds02/hymap02_ds02_sub_img_27_74_13.jpg")
+    rgb_im = io.imread("images/hymap02/ds02/hymap02_ds02_sub_img_27_74_13.jpg")
     width = rgb_im.shape[0]
     height = rgb_im.shape[1]
     # r = im[:, :, 27].reshape(width, height, 1)
@@ -29,10 +29,7 @@ def draw_contour(u, im, k, dist_flag):
             label_im[x, y] = u.find(y * width + x)
     print "label_im unique value:", len(np.unique(label_im))
     contoured_im = mark_boundaries(rgb_im, label_im, color=(0, 0, 255), mode='subpixel')
-    # title = "%s segmented image %s" % (dist_flag, k)
-    # cv2.imshow(title, contoured_im)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
+
     return contoured_im
 
 
@@ -93,10 +90,6 @@ def color_segmented_image(u, width, height, c, cat):
             comp = u.find(y * width + x)
             output[x, y] = rgb[comps_u.index(comp)]
 
-    title = "%s segmented image %s" % (cat, c)
-    # cv2.imshow(title, output)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
     return output
 
 

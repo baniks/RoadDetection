@@ -19,7 +19,7 @@ sigma = 0.25
 c = 100
 min_size = 20
 min_size2 = 30
-ds_name = "hymap02_ds02_sub_img"
+ds_name = "hymap02_ds02_sub_img1"
 output_dir = "output/ds02"
 
 print "Parameters:"

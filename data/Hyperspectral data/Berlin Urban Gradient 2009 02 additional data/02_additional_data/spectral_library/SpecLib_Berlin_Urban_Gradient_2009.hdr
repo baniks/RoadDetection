@@ -1,0 +1,49 @@
+ENVI
+description = {SpecLib Berlin-Urban-Gradient dataset, 75 spectra, 111 bands}
+samples = 111
+lines   = 75
+bands   = 1
+header offset = 0
+file type = ENVI Spectral Library
+data type = 5
+interleave = bsq
+sensor type = Unknown
+byte order = 0
+wavelength units = Micrometers
+reflectance scale factor = 1.000000
+z plot titles = {wavelength [!7l!3m]!N, reflectance [%/100]}
+band names = {
+ Spectral Library}
+spectra names = {
+ Red clay tile 1, Red clay tile 2, Red clay tile 3, Red clay tile 4, Red cement tile 1, 
+ Red cement tile 2, Red cement tile 3,  Bitumen 1, Bitumen 2, Bitumen 3, Bitumen 4, 
+ Bitumen 5, Brown tile, Black tile, Brown shingle, White roof material (polyethylene), 
+ White roof material (unknown) 1, White roof material (unknown) 2, White roof material (unknown) 3,
+ White roof material (unknown) 4, Greenish roof material (unknown), Light gray roof material (unknown),
+ Zinc, Asphalt 1, Asphalt 2, Asphalt 3, Asphalt 4, Concrete 1, Concrete 2, Concrete 3, 
+ Grass (intensively manicured) 1, Grass (intensively manicured) 2, Grass (extensively manicured), 
+ Grass (agricultural grassland) 1, Grass (agricultural grassland) 2, Grass (agricultural grassland)3,
+ Grass (meadow clover) 1, Grass (meadow clover) 2, Grass (meadow alfalfa/lucerne), Grass (dry) 1, 
+ Grass (dry) 2, Grass (dry agricultural grassland), Sunflower, Corn, Sorghum, Sugarbeet 1, Sugarbeet 2, 
+ Potatoes, Deciduous tree 1, Deciduous tree 2, Deciduous tree 3, Deciduous tree 4, Deciduous tree 5, 
+ Deciduous tree 6, Deciduous tree 7, Deciduous tree 8, Deciduous tree 9, Deciduous tree 10, 
+ Deciduous tree 11, Coniferous tree 1, Coniferous tree 2, Bare soil 1, Bare soil 2, Sand (playground) 1,
+ Sand (playground) 2, Red sand (cinder field), Red sand (cinder court) 1,  Red sand (cinder court) 2, 
+ Railtrack 1, Railtrack 2, Artificial turf 1, Artificial turf 2, Tartan (sports ground), Water1, Water 2}
+wavelength = {
+ 0.455400, 0.469400, 0.484300, 0.499100, 0.513800, 0.528800, 0.543600,
+ 0.558400, 0.573100, 0.588100, 0.602900, 0.617600, 0.632000, 0.646500,
+ 0.660900, 0.675500, 0.690000, 0.704500, 0.718900, 0.733200, 0.747600,
+ 0.761800, 0.775900, 0.790100, 0.804600, 0.818800, 0.832900, 0.847100,
+ 0.861100, 0.874700, 0.887800, 0.893000, 0.908500, 0.923900, 0.939400,
+ 0.955200, 0.970400, 0.985800, 1.001400, 1.016600, 1.031800, 1.046900,
+ 1.062000, 1.076600, 1.091300, 1.106200, 1.120800, 1.135300, 1.149700,
+ 1.164100, 1.178600, 1.192800, 1.206900, 1.221000, 1.235100, 1.249200,
+ 1.263100, 1.277000, 1.290700, 1.304300, 1.318300, 1.330100, 1.505000,
+ 1.518800, 1.532600, 1.546300, 1.559800, 1.573200, 1.586400, 1.599500,
+ 1.612700, 1.625900, 1.638900, 1.651700, 1.664400, 1.677100, 1.689600,
+ 1.702100, 1.714600, 1.726900, 1.739300, 1.751500, 1.763600, 1.775600,
+ 1.787600, 1.798100, 2.027500, 2.046700, 2.065500, 2.084100, 2.102500,
+ 2.120900, 2.139000, 2.157000, 2.174700, 2.191700, 2.210300, 2.228100,
+ 2.245600, 2.263400, 2.280400, 2.297400, 2.314400, 2.331400, 2.348300,
+ 2.365000, 2.381500, 2.397700, 2.414100, 2.430300, 2.446500}
